@@ -69,7 +69,7 @@ passport.deserializeUser(Account.deserializeUser())
 // Authorized-only pages
 APP.get('/a/:authorized_only_page', ensureLoggedIn(), (req, res) => {
     res.render(`authorized/${authorized_only_page}`, { userInfo: req.user }, (err, html) => {
-        if (err) return next(err) // Error handling needed
+        if (err) return next(err)
         else res.status(200).send(html)
     })
 })
@@ -91,8 +91,9 @@ APP.get('/:static_page', (req, res, next) => {
 
 // Register new user
 APP.post('/register', (req, res, next) => {
+    console.log(req.body.username, req.body.email)
     Account.register(new Account({ username: req.body.username, email: req.body.email }), req.body.password, (err) => {
-        if (err) return next(err) // Error handling needed
+        if (err) return next(err)
         else res.redirect('/registration-success')
     })
 })
@@ -100,7 +101,7 @@ APP.post('/register', (req, res, next) => {
 // Save profile settings
 APP.post('/save', ensureLoggedIn(), (req, res, next) => {
     Account.findById(req.user._id, (err, user) => {
-        if (err) return next(err) // Error handling needed
+        if (err) return next(err)
         user.save().then(_ => {
             res.redirect('/profile')
             res.end()
@@ -140,7 +141,7 @@ const clientErrorHandler = function(err, req, res, next) {
 const serverErrorHandler = function(err, req, res, next) {
     if (err instanceof ReferenceError) {
         err.status = 500
-    } 
+    }
     return next(err)
 }
 
@@ -149,8 +150,6 @@ const errorHandler = function(err, req, res, next) {
     console.log(err)
     res.status(err.status || 500)
     res.render('public/error', {
-        message: err.message,
-        error: err,
         code: res.statusCode
     })
 }

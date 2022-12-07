@@ -25,7 +25,7 @@ const accountSchema = mongoose.Schema({
         type: String,
         required: 'A username is required',
         trim: true,
-        unique: false
+        unique: true
     },
     email: {
         type: String,
@@ -46,9 +46,7 @@ const accountSchema = mongoose.Schema({
     
 })
 
-const options = {
-    usernameField: 'email'
-}
+const options = {}
 
 accountSchema.plugin(passportLocalMongoose, options)
 
