@@ -12,6 +12,24 @@ const specialChars = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~".split('')
 const numbers = "1234567890".split('')
 const capitals = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('')
 
+function matchPassword(e) {
+
+    if (password.value === verifyPassword.value) {
+        submit.classList.remove('disabled')
+    } else {
+        submit.classList.add('disabled')
+    }
+
+}
+
+function validateUsername(username) {
+    if (username.value.length < 4) return false
+}
+
+function validateEmail(email) {
+    return (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
+}
+
 function validatePassword(e) {
     
     let valid = true
@@ -79,14 +97,21 @@ function validateRegister(form) {
 
 function initRegister() {
 
+    username = document.getElementById('username')
+    username = document.getElementById('email')
     password = document.getElementById('password')
     verifyPassword = document.getElementById('verify-password')
+    submit = document.getElementById('register-submit')
+
     requirementLength = document.getElementById('req-len')
     requirementSpecial = document.getElementById('req-spec')
     requirementNumber = document.getElementById('req-num')
     requirementCapital = document.getElementById('req-cap')
 
+
     password.addEventListener('keyup', (validatePassword))
-    verifyPassword.addEventListener('keyup', validatePassword)
+    verifyPassword.addEventListener('keyup', matchPassword)
+
+
 
 }

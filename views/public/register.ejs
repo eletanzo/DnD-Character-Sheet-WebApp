@@ -5,50 +5,43 @@
     </head>
     <body onload="initRegister()">
         <%- include('../partials/header') %>
-        <div class="container-lg mx-auto mb-3 text-start">
-            <h3 class="card-title">New here? Sign up today!</h3>
-            <br>
-            <div class="card shadow" >
-                <form action="/login" method="POST">
-                    <div class="card-body p-5">
-                        <div class="row text-start">
-                            <div class="col-sm">
-                                <div class="row-sm">
+        <div class="container">
+            <div class="col-lg-6 mx-auto">
+                <h3 class="card-title">New here? Sign up today!</h3>
+                <br>
+                <div class="card shadow">
+                    <form action="/login" method="POST">
+                        <div class="card-body p-5">
+                            <div class="row text-start">
+                                <div class="col-sm">
                                     <label for="username" class="form-label">Username</label>
-                                    <input type="text" class="form-control" id="username">
-                                </div>
-                                <div class="row-sm">
+                                    <input type="text" class="form-control" id="username" required>
                                     <label for="email" class="form-label">Email address</label>
-                                    <input type="email" class="form-control" id="email">
-                                </div>
-                                <div class="row-sm">
+                                    <input type="email" class="form-control" id="email" required>
                                     <label for="password" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="password">
+                                    <input type="password" class="form-control" id="password" required>
                                     <label for="verify-password" class="form-label">Repeat password</label>
-                                    <input type="password" class="form-control" id="verify-password">
+                                    <input type="password" class="form-control" id="verify-password" required>
+                                </div>
+                                <div class="col-sm">
+                                    <p>For your security, please ensure your password:</p>
+                                    <ul>
+                                        <li id="req-len">Is at least 8 characters long</li>
+                                        <li id="req-num">Contains a number</li>
+                                        <li id="req-spec">Contains a special character</li>
+                                        <li id="req-cap">Contains a capital letter</li>
+                                    </ul>
                                 </div>
                             </div>
-                            <div class="col-sm">
-                                <p>For your security, please ensure your password:</p>
-                                <ul>
-                                    <li id="req-len">Is at least 8 characters long</li>
-                                    <li id="req-num">Contains a number</li>
-                                    <li id="req-spec">Contains a special character</li>
-                                    <li id="req-cap">Contains a capital letter</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <button type="submit" class="btn btn-outline-dark disabled">Sign up</button>
-                            </div>
+                            <button type="submit" class="btn btn-outline-dark disabled" id="register-submit">Sign up</button><br>
                             <span>Already have an account? <a href="/login">Log in here!</a></span>
+                            
                         </div>
-                        
-                    </div>
-                </form>
+                    </form>
 
+                </div>
             </div>
+            
         </div>
         
         <%- include('../partials/footer') %>
