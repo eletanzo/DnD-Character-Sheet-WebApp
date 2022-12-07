@@ -4,6 +4,7 @@
   "description": "A website designed to allow users to create 5th edition characters using a custom character sheet, with access to it from anywhere.",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
