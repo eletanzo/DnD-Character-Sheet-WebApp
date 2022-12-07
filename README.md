@@ -14,5 +14,7 @@ After installing Node.js and MongoDB, you're ready to get set up!
 
 ## Recommended applications and stuff
 MongoDB has the option to install with an application called MongoDBCompass. I **highly** recommend using this, as it makes it easy to look through the database itself and troubleshoot directly.
+
 VSCode is an extremely versatile IDE and I will always recommend it, especially for web development.
+  
   On that note, this project uses .ejs files to create dynamic views. I **strongly** recommend getting the 'EJS language support' extension, as EJS tags will not be properly detected with the default linter.
