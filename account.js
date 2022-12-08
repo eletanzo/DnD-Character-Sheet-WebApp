@@ -25,11 +25,13 @@ const accountSchema = mongoose.Schema({
         type: String,
         required: 'A username is required',
         trim: true,
+        index: true,
         unique: true
     },
     email: {
         type: String,
         required: 'An email address is required',
+        index: true,
         unique: true,
         lowercase: true,
         trim: true,
