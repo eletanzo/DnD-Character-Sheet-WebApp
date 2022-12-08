@@ -41,8 +41,7 @@ const accountSchema = mongoose.Schema({
             /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
             'Provided email address is not valid'
         ]
-    },
-    aversions: [String] // Allergies/ingredients user wishes to avoid
+    }
     
 })
 

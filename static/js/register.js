@@ -1,5 +1,19 @@
 // Javascript unique to the registration page, including basics such as front-end validation and other methods not needed by other pages
 
+// $(document).ready(function () {
+//     $('#password').on('keyup', () => {
+
+//     })
+//     $('form').submit((event) => {
+//         var formData = {
+//             username: $('#username').val(),
+//             email: $('#email').val(),
+//             password: $('#password').val(),
+//             verifyPassword: $('#verify-password').val()
+//         }
+//     })
+// })
+
 var password
 var verifyPassword
 
@@ -11,16 +25,6 @@ var requirementMatch
 const specialChars = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~".split('')
 const numbers = "1234567890".split('')
 const capitals = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('')
-
-function matchPassword(e) {
-
-    if (password.value === verifyPassword.value) {
-        submit.classList.remove('disabled')
-    } else {
-        submit.classList.add('disabled')
-    }
-
-}
 
 function validateUsername(username) {
     if (username.value.length < 4) return false
@@ -69,7 +73,16 @@ function validatePassword(e) {
         valid = false
     }
 
-    return valid
+    // Password and repeated password match
+    if (!password.value === verifyPassword.value) {
+        valid = false
+    }
+
+    if (valid) {
+        submit.classList.remove('disabled')
+    } else {
+        submit.classList.add('disabled')
+    }
 
 }
 
@@ -110,7 +123,7 @@ function initRegister() {
 
 
     password.addEventListener('keyup', (validatePassword))
-    verifyPassword.addEventListener('keyup', matchPassword)
+    verifyPassword.addEventListener('keyup', validatePassword)
 
 
 

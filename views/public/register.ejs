@@ -10,18 +10,18 @@
                 <h3 class="card-title">New here? Sign up today!</h3>
                 <br>
                 <div class="card shadow">
-                    <form action="/register" method="POST">
+                    <form id="registration" action="/register" method="POST">
                         <div class="card-body p-5">
                             <div class="row text-start">
                                 <div class="col-sm">
                                     <label for="username" class="form-label">Username</label>
-                                    <input type="text" class="form-control" id="username" required>
+                                    <input type="text" class="form-control" name="username" id="username" required>
                                     <label for="email" class="form-label">Email address</label>
-                                    <input type="email" class="form-control" id="email" required>
+                                    <input type="email" class="form-control" name="email" id="email" required>
                                     <label for="password" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="password" required>
+                                    <input type="password" class="form-control" name="password" id="password" required>
                                     <label for="verify-password" class="form-label">Repeat password</label>
-                                    <input type="password" class="form-control" id="verify-password" required>
+                                    <input type="password" class="form-control" name="verify-password" id="verify-password" required>
                                 </div>
                                 <div class="col-sm">
                                     <p>For your security, please ensure your password:</p>
