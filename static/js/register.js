@@ -1,18 +1,18 @@
 // Javascript unique to the registration page, including basics such as front-end validation and other methods not needed by other pages
 
-$(document).ready(function () {
-    $('#password').on('keyup', () => {
+// $(document).ready(function () {
+//     $('#password').on('keyup', () => {
 
-    })
-    $('form').submit((event) => {
-        var formData = {
-            username: $('#username').val(),
-            email: $('#email').val(),
-            password: $('#password').val(),
-            verifyPassword: $('#verify-password').val()
-        }
-    })
-})
+//     })
+//     $('form').submit((event) => {
+//         var formData = {
+//             username: $('#username').val(),
+//             email: $('#email').val(),
+//             password: $('#password').val(),
+//             verifyPassword: $('#verify-password').val()
+//         }
+//     })
+// }) 
 
 var password
 var verifyPassword
