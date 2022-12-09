@@ -8,10 +8,8 @@ const logger = require('morgan')
 const express = require('express')
 const mongoose = require('mongoose')
 const Account = require('./account-model')
-// const passport = require('passport')
 const flash = require('connect-flash')
 const session = require('express-session')
-// const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn
 
 // =================================================================================================
 // INITIALIZATIONS
@@ -53,8 +51,6 @@ App.use(session({
 App.use(flash())
 App.use(express.json())
 App.use(express.urlencoded({ extended: true }))
-// App.use(passport.initialize())
-// App.use(passport.session())
 App.use(express.static(__dirname + '/static'))
 
 // Define any values that need to be used by EVERY res.render() call here as part of res.locals
@@ -73,10 +69,6 @@ App.use((req, res, next) => {
     // }
     next()
 })
-
-// passport.use(Account.createStrategy())
-// passport.serializeUser(Account.serializeUser())
-// passport.deserializeUser(Account.deserializeUser())
 
 
 // =================================================================================================
@@ -110,13 +102,6 @@ App.get('/:static_page', (req, res, next) => {
 
 // Register new user
 App.post('/register', (req, res, next) => {
-    // Account.register(new Account({ username: req.body.username, email: req.body.email }), req.body.password, (err) => {
-    //     if (err) return next(err)
-    //     else {
-    //         req.flash('success', 'Registration successful! Feel free to log in now')
-    //         res.redirect('/login')
-    //     } 
-    // })
     Account.create({
         username: req.body.username,
         email: req.body.email,
@@ -140,11 +125,6 @@ App.post('/save', isAuthenticated('/login'), (req, res, next) => {
 })
 
 // Log in to existing user
-// APP.post('/login', passport.authenticate('local', { 
-//     successRedirect: '/login-success',
-//     failureRedirect: '/login',
-//     failureFlash: true
-// }))
 App.post('/login', (req, res, next) => {
     req.session.regenerate((err) => {
         if (err) return next(err)
