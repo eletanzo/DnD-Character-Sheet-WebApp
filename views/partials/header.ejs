@@ -2,7 +2,7 @@
 <div class="mb-5">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <% if (!user.isLoggedIn) { %>
+            <% if (/*!user.isLoggedIn*/ true) { // Change to new variable for login after implementation%>
                 <a type="button" class="btn btn-outline-dark" href="/login">Login</a>
             <% } else { %>
                 

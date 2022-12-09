@@ -7,48 +7,59 @@ const https = require('https')
 const logger = require('morgan')
 const express = require('express')
 const mongoose = require('mongoose')
-const Account = require('./account')
-const passport = require('passport')
+const Account = require('./account-model')
+// const passport = require('passport')
 const flash = require('connect-flash')
 const session = require('express-session')
-const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn
+// const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn
 
 // =================================================================================================
 // INITIALIZATIONS
 // =================================================================================================
 
-
+const isAuthenticated = (redirect = null) => {
+    return (req, res, next) => {
+        if (req.session.user) next() // req.session.user set when logging in. If undefined, not logged in
+        else { 
+            if (redirect) res.redirect(redirect) // redirect on failure if specified,
+            else next('route') // otherwise procede to the next overloaded route
+        }
+        
+    }
+}
 
 const TIMEOUT_HOURS = 8 // Number of hours before a login session expires
-const APP = express()
+const App = express()
 
 // =================================================================================================
 // CONFIGURATIONS
 // =================================================================================================
 
-APP.set('view engine', 'ejs')
+App.set('view engine', 'ejs')
 
 // =================================================================================================
 // MIDDLEWARE
 // =================================================================================================
 
-APP.use(logger('dev'))
-APP.use(session({
+App.use(logger('dev'))
+App.use(session({ 
     secret: process.env.SESSION_SECRET,
+    // name: 'dnd-webapp', // Avoids conflicts between sessions of apps from same domain
     resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: 1000 * 60 * 60 * TIMEOUT_HOURS } 
+    saveUninitialized: false,
+    cookie: { maxAge: 1000 * 60 * 60 * TIMEOUT_HOURS } // Add secure as well, later when https is required
+    // store: Account. ... ({}) // Define a function call here to store the session info in mongoose
 }))
-APP.use(flash())
-APP.use(express.json())
-APP.use(express.urlencoded({ extended: true }))
-APP.use(passport.initialize())
-APP.use(passport.session())
-APP.use(express.static(__dirname + '/static'))
+App.use(flash())
+App.use(express.json())
+App.use(express.urlencoded({ extended: true }))
+// App.use(passport.initialize())
+// App.use(passport.session())
+App.use(express.static(__dirname + '/static'))
 
 // Define any values that need to be used by EVERY res.render() call here as part of res.locals
 // E.g., loggedIn is used in every .ejs by the header to see if the user is logged in to display the profile icon
-APP.use((req, res, next) => {
+App.use((req, res, next) => {
     // Initializing all flash messages
     res.locals.error = req.flash('error')[0]
     res.locals.warning = req.flash('warning')[0]
@@ -56,16 +67,16 @@ APP.use((req, res, next) => {
     res.locals.success = req.flash('success')[0]
     // Initializing user info
     res.locals.user = {}
-    res.locals.user.isLoggedIn = req.isAuthenticated()
-    if (req.user) { // req.user is attached by passport, and populated with data from mongoose by passport-local-mongoose (e.g., req.user.DOCUMENT_ATTRIBUTE)
+    // res.locals.user.isLoggedIn = req.isAuthenticated()
+    // if (req.user) { // req.user is attached by passport, and populated with data from mongoose by passport-local-mongoose (e.g., req.user.DOCUMENT_ATTRIBUTE)
         
-    }
+    // }
     next()
 })
 
-passport.use(Account.createStrategy())
-passport.serializeUser(Account.serializeUser())
-passport.deserializeUser(Account.deserializeUser())
+// passport.use(Account.createStrategy())
+// passport.serializeUser(Account.serializeUser())
+// passport.deserializeUser(Account.deserializeUser())
 
 
 // =================================================================================================
@@ -75,7 +86,7 @@ passport.deserializeUser(Account.deserializeUser())
 // GET
 
 // Authorized-only pages
-APP.get('/a/:authorized_only_page', ensureLoggedIn(), (req, res) => {
+App.get('/a/:authorized_only_page', isAuthenticated('/login'), (req, res) => {
     res.render(`authorized/${authorized_only_page}`, { userInfo: req.user }, (err, html) => {
         if (err) return next(err)
         else res.status(200).send(html)
@@ -83,12 +94,12 @@ APP.get('/a/:authorized_only_page', ensureLoggedIn(), (req, res) => {
 })
 
 // Redirect default to homepage
-APP.get('/', (req, res, next) => {
+App.get('/', (req, res, next) => {
     res.redirect('/home')
 })
 
 // Publicly-reachable pages (i.e., no login required)
-APP.get('/:static_page', (req, res, next) => {
+App.get('/:static_page', (req, res, next) => {
     res.render(`public/${req.params.static_page}`, (err, html) => {
         if (err) return next(err)
         else res.status(200).send(html)
@@ -98,18 +109,27 @@ APP.get('/:static_page', (req, res, next) => {
 // POST
 
 // Register new user
-APP.post('/register', (req, res, next) => {
-    Account.register(new Account({ username: req.body.username, email: req.body.email }), req.body.password, (err) => {
+App.post('/register', (req, res, next) => {
+    // Account.register(new Account({ username: req.body.username, email: req.body.email }), req.body.password, (err) => {
+    //     if (err) return next(err)
+    //     else {
+    //         req.flash('success', 'Registration successful! Feel free to log in now')
+    //         res.redirect('/login')
+    //     } 
+    // })
+    Account.create({
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password // Password is hashed by default from the .pre('save',...) in model
+    }, (err, newAccount) => {
         if (err) return next(err)
-        else {
-            req.flash('success', 'Registration successful! Feel free to log in now')
-            res.redirect('/login')
-        } 
+        req.flash('success', 'Registration successful! Feel free to log in now')
+        res.redirect('/login')
     })
 })
 
 // Save profile settings
-APP.post('/save', ensureLoggedIn(), (req, res, next) => {
+App.post('/save', isAuthenticated('/login'), (req, res, next) => {
     Account.findById(req.user._id, (err, user) => {
         if (err) return next(err)
         user.save().then(_ => {
@@ -120,14 +140,48 @@ APP.post('/save', ensureLoggedIn(), (req, res, next) => {
 })
 
 // Log in to existing user
-APP.post('/login', passport.authenticate('local', { 
-    successRedirect: '/login-success',
-    failureRedirect: '/login',
-    failureFlash: true
-}))
+// APP.post('/login', passport.authenticate('local', { 
+//     successRedirect: '/login-success',
+//     failureRedirect: '/login',
+//     failureFlash: true
+// }))
+App.post('/login', (req, res, next) => {
+    req.session.regenerate((err) => {
+        if (err) return next(err)
+        Account.findOne({ 'username': req.body.username }, (err, account) => {
+            if (err) return next(err)
+            else if (!account) { // No error but no account means wrong username
+                req.flash('error', 'The username you entered is incorrect. Please try again')
+                res.redirect('/login')
+            } else {
+                account.authenticate(req.body.password, (err, passed) => {
+                    if (err) return next(err) // if authenticate() failed, it should pass an error, and account should be passed instead
+                        // User session info stored under req.session.user object. Check req.session.user for authentication
+                    if (passed) {
+                        req.session.user = {
+                            userid: account._id,
+                            username: account.username
+                        }
+                        req.session.save((err) => {
+                            if (err) return next(err)
+                            req.flash('success', `You're all logged in!`)
+                            res.redirect('/home')
+                        })
+                    } else {
+                        req.flash('error', 'The password you entered is incorrect. Please try again')
+                        res.redirect('/login')
+                    }
+                })
+            }
+            
+        })
+        
+    })
+})
+
 
 // Log out from logged in user
-APP.post('/logout', ensureLoggedIn(), (req, res, next) => {
+App.post('/logout', isAuthenticated('/login'), (req, res, next) => {
     req.logout( (err) => {
         if (err) return next(err)
         else res.redirect('/')
@@ -137,17 +191,6 @@ APP.post('/logout', ensureLoggedIn(), (req, res, next) => {
 // =================================================================================================
 // ERROR HANDLING
 // =================================================================================================
-
-// Passport-local-mongoose Errors, common with user registration or login
-const passportLocalMongooseErrorHandler = function(err, req, res, next) {
-    if (err.name === 'UserExistsError') {
-        req.flash('error', err.message)
-        res.redirect('/register') // Needs to send 409 - already exists
-        err.status = 409
-    }
-    return next(err)
-    
-}
 
 // Mongo errors, typically raised from database data validation errors
 const mongooseErrorHandler = function(err, req, res, next) {
@@ -159,8 +202,8 @@ const mongooseErrorHandler = function(err, req, res, next) {
         }
     } else if (err.name === 'MongoServerError') { // Mongo server errors specifically
         console.log("MongoServerError caught")
-        if (err.code === 11000) { // duplicate key error code. Email is the key index, so duplicate email
-            req.flash('error', 'A user with the given email is already registered')
+        if (err.code === 11000) { // duplicate key error code. Something unique already exists in the database, so warn the user
+            req.flash('error', `A user with the ${Object.keys(err.keyPattern)[0]} ${Object.values(err.keyValue)[0]} is already registered`)
             res.redirect('/register') // Needs to send 409 - already exists
             err.status = 409
         } 
@@ -198,11 +241,11 @@ const errorHandler = function(err, req, res, next) {
     })
 }
 
-APP.use(passportLocalMongooseErrorHandler)
-APP.use(mongooseErrorHandler)
-APP.use(clientErrorHandler)
-APP.use(serverErrorHandler)
-APP.use(errorHandler)
+// App.use(passportLocalMongooseErrorHandler)
+App.use(mongooseErrorHandler)
+App.use(clientErrorHandler)
+App.use(serverErrorHandler)
+App.use(errorHandler)
 
 // =================================================================================================
 // STARTUP
@@ -211,18 +254,18 @@ try {
     var listener = https.createServer({
         key: fs.readFileSync('SSL/server.key'),
         cert: fs.readFileSync('SSL/server.cert')
-    }, APP).listen(process.env.PORT | 8080, () => {
+    }, App).listen(process.env.PORT | 8080, () => {
         console.log(`Listening on port ${listener.address().port}`)
     })
 } catch (err) {
     if (err.code === 'ENOENT') {
         console.log('Could not find SSL certificate or key; running in http (UNENCRYPTED, DO NOT RUN IN PRODUCTION THIS WAY)')
-        var listener = APP.listen(process.env.PORT | 8080, () => {
+        var listener = App.listen(process.env.PORT | 8080, () => {
             console.log(`Listening on port ${listener.address().port}`)
         })
     }
 }
 
 
-module.exports.app = APP
+module.exports.app = App
 
