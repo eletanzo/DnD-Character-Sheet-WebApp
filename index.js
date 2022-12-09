@@ -26,7 +26,7 @@ const isAuthenticated = (redirect = null) => {
     }
 }
 
-const TIMEOUT_HOURS = 8 // Number of hours before a login session expires
+const TIMEOUT_HOURS = 0.0167 // Number of hours before a login session expires
 const App = express()
 
 // =================================================================================================
@@ -42,7 +42,7 @@ App.set('view engine', 'ejs')
 App.use(logger('dev'))
 App.use(session({ 
     secret: process.env.SESSION_SECRET,
-    // name: 'dnd-webapp', // Avoids conflicts between sessions of apps from same domain
+    name: 'dnd-webapp', // Avoids conflicts between sessions of apps from same domain
     resave: false,
     saveUninitialized: false,
     cookie: { maxAge: 1000 * 60 * 60 * TIMEOUT_HOURS } // Add secure as well, later when https is required
@@ -61,9 +61,9 @@ App.use((req, res, next) => {
     res.locals.warning = req.flash('warning')[0]
     res.locals.info = req.flash('info')[0]
     res.locals.success = req.flash('success')[0]
-    // Initializing user info
+    // Initializing user-specific page info to be rendered on ejs pages
     res.locals.user = {}
-    // res.locals.user.isLoggedIn = req.isAuthenticated()
+    res.locals.user.isLoggedIn = (!!req.session.user) // true if req.session.user exists, which means they're logged in
     // if (req.user) { // req.user is attached by passport, and populated with data from mongoose by passport-local-mongoose (e.g., req.user.DOCUMENT_ATTRIBUTE)
         
     // }
