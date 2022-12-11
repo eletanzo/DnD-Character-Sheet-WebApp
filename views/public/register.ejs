@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <%- include('../partials/meta-content', { title: 'D&D 5th Edition' }) %>
+        <script src="js/register.js"></script>
+    </head>
+    <body onload="initRegister()">
+        <%- include('../partials/header') %>
+        <div class="container">
+            <div class="col-lg-6 mx-auto">
+                <h3 class="card-title">New here? Sign up today!</h3>
+                <br>
+                <div class="card shadow">
+                    <form id="registration" action="/register" method="POST">
+                        <div class="card-body p-5">
+                            <div class="row text-start">
+                                <div class="col-sm">
+                                    <label for="username" class="form-label">Username</label>
+                                    <input type="text" class="form-control" name="username" id="username" required>
+                                    <label for="email" class="form-label">Email address</label>
+                                    <input type="email" class="form-control" name="email" id="email" required>
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" class="form-control" name="password" id="password" required>
+                                    <label for="verify-password" class="form-label">Repeat password</label>
+                                    <input type="password" class="form-control" name="verify-password" id="verify-password" required>
+                                </div>
+                                <div class="col-sm">
+                                    <p>For your security, please ensure your password:</p>
+                                    <ul>
+                                        <li id="req-len">Is at least 8 characters long</li>
+                                        <li id="req-num">Contains a number</li>
+                                        <li id="req-spec">Contains a special character</li>
+                                        <li id="req-cap">Contains a capital letter</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-outline-dark disabled" id="register-submit">Sign up</button><br>
+                            <span>Already have an account? <a href="/login">Log in here!</a></span>
+                            
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            
+        </div>
+        
+        <%- include('../partials/footer') %>
+    </body>
+</html>

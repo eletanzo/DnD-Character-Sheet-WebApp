@@ -1,0 +1,41 @@
+
+<div class="mb-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <% if (!user.isLoggedIn) { // Change to new variable for login after implementation%>
+                <a type="button" class="btn btn-outline-dark" href="/login">Login</a>
+            <% } else { %>
+                
+            <% } %>
+            <a class="navbar-brand" href="/home">D&D 5e Character Manager</a>
+        </div>
+    </nav>
+    <% if (error) { %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <strong>Error!</strong> <%= error %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% } %>
+    <% if (warning) { %>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <strong>Warning!</strong> <%= warning %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% } %>
+    <% if (info) { %>
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <i class="fa-solid fa-circle-info"></i>
+        <%= info %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% } %>
+    <% if (success) { %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fa-solid fa-circle-check"></i>
+        <strong>Success!</strong> <%= success %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% } %>
+</div>

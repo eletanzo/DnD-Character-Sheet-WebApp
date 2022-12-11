@@ -1,12 +1,14 @@
 <html>
     <head>
-        <%- include('../partials/head', { title: 'Error!' }) %>
+        <%- include('../partials/meta-content', { title: 'Error!' }) %>
     </head>
     <body>
-        
-        <h1>Oops! Something went wrong!</h1>
-        <h2><%= code %></h2>
-        <p>Sorry for the inconvenience! It appears something has gone wrong. Please try again later!</p>
+        <%- include('../partials/header') %>
+        <div class="container">
+            <h1>Oops! Something went wrong!</h1>
+            <h2><%= code %></h2>
+            <p>Sorry for the inconvenience! It appears something has gone wrong. Please try again later!</p>
+        </div>
         
         <%- include('../partials/footer') %>
     </body>
