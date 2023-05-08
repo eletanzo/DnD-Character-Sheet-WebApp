@@ -26,7 +26,7 @@ const isAuthenticated = (redirect = null) => {
     }
 }
 
-const TIMEOUT_HOURS = 0.0167 // Number of hours before a login session expires
+const TIMEOUT_HOURS = 1 // Number of hours before a login session expires
 const App = express()
 
 // =================================================================================================
@@ -39,7 +39,7 @@ App.set('view engine', 'ejs')
 // MIDDLEWARE
 // =================================================================================================
 
-App.use(logger('dev'))
+App.use(logger(':date[iso] :remote-addr :method :url :status :res[content-length] - :response-time ms'))
 App.use(session({ 
     secret: process.env.SESSION_SECRET,
     name: 'dnd-webapp', // Avoids conflicts between sessions of apps from same domain
@@ -78,14 +78,25 @@ App.use((req, res, next) => {
 // GET
 
 // Authorized-only pages
-App.get('/a/:authorized_only_page', isAuthenticated('/login'), (req, res) => {
-    res.render(`authorized/${authorized_only_page}`, { userInfo: req.user }, (err, html) => {
+// App.get('/a/:authorized_only_page', isAuthenticated('/login'), (req, res) => {
+//     res.render(`authorized/${authorized_only_page}`, { userInfo: req.user }, (err, html) => {
+//         if (err) return next(err)
+//         else res.status(200).send(html)
+//     })
+// })
+
+App.get('/character', isAuthenticated('/login'), (req, res) => {
+    res.render('authorized/character', (err, html) => {
         if (err) return next(err)
         else res.status(200).send(html)
     })
 })
 
 // Redirect default to homepage
+// App.get('/', isAuthenticated, (req, res) => {
+//     res.redirect('/character')
+// })
+
 App.get('/', (req, res, next) => {
     res.redirect('/home')
 })
@@ -145,7 +156,7 @@ App.post('/login', (req, res, next) => {
                         req.session.save((err) => {
                             if (err) return next(err)
                             req.flash('success', `You're all logged in!`)
-                            res.redirect('/home')
+                            res.redirect('/')
                         })
                     } else {
                         req.flash('error', 'The password you entered is incorrect. Please try again')
@@ -234,13 +245,13 @@ try {
     var listener = https.createServer({
         key: fs.readFileSync('SSL/server.key'),
         cert: fs.readFileSync('SSL/server.cert')
-    }, App).listen(process.env.PORT | 8080, () => {
+    }, App).listen(process.env.PORT || 8080, () => {
         console.log(`Listening on port ${listener.address().port}`)
     })
 } catch (err) {
     if (err.code === 'ENOENT') {
         console.log('Could not find SSL certificate or key; running in http (UNENCRYPTED, DO NOT RUN IN PRODUCTION THIS WAY)')
-        var listener = App.listen(process.env.PORT | 8080, () => {
+        var listener = App.listen(process.env.PORT || 8080, () => {
             console.log(`Listening on port ${listener.address().port}`)
         })
     }
