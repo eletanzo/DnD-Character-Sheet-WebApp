@@ -1,0 +1,22 @@
+<div class="container mx-auto mb-3 text-center">
+    <h3 class="card-title">Welcome back!</h3>
+    <h4>Sign in here</h4>
+    <br>
+    <div class="card shadow d-inline-flex" >
+        <form action="/login" method="POST">
+            <div class="card-body text-start d-grid gap-3 p-4">
+                <div>
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" name="username" id="username">
+                </div>
+                <div>
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" id="password">
+                </div>
+                <button type="submit" class="btn  btn-outline-dark">Log in</button>
+            </div>
+            <a href="/register">Don't have an account?</a>
+        </form>
+
+    </div>
+</div>
