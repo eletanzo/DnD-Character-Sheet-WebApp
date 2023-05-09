@@ -1,0 +1,17 @@
+{
+    "Level": [
+        {
+            "level_num" : "1st",
+            "proficiency_bonus" : "+2",
+            "features" : "Magical Tinkering, Spellcasting", 
+            "infusions_known" : 0,
+            "infused_items" : 0,
+            "cantrips_known" : 2,
+            "first_level_spells" : 2,
+            "second_level_spells" : 0,
+            "third_level_spells" : 0,
+            "fourth_level_spells" : 0,
+            "fifth_level_spells" : 0
+        }
+    ]
+}

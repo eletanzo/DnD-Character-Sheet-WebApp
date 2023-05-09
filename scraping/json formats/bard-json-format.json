@@ -1,0 +1,19 @@
+{
+    "Level": [
+        {
+            "level_num" : "1st",
+            "proficiency_bonus" : "+2",
+            "features" : "Spellcasting, Bardic Inspiration (d6)", 
+            "cantrips_known" : 2,
+            "first_level_spells" : 2,
+            "second_level_spells" : 0,
+            "third_level_spells" : 0,
+            "fourth_level_spells" : 0,
+            "fifth_level_spells" : 0,
+            "sixth_level_spells" : 0,
+            "seventh_level_spells" : 0,
+            "eigth_level_spells" : 0,
+            "ninth_level_spells" : 0
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "Level": [
+        {
+            "level_num" : "1st",
+            "proficiency_bonus" : "+2",
+            "sneak_attack_bonus" : "1d6",
+            "features" : "Expertise, Sneak Attack, Thieves' Cant"
+        }
+    ]
+}

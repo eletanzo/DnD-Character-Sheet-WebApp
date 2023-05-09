@@ -1,0 +1,34 @@
+{
+    "Level": [
+        {
+            "level_num" : "1st",
+            "proficiency_bonus" : "+2",
+            "features" : "Spellcasting, Arcane Recovery", 
+            "cantrips_known" : 3,
+            "first_level_spells" : 2,
+            "second_level_spells" : 0,
+            "third_level_spells" : 0,
+            "fourth_level_spells" : 0,
+            "fifth_level_spells" : 0,
+            "sixth_level_spells" : 0,
+            "seventh_level_spells" : 0,
+            "eigth_level_spells" : 0,
+            "ninth_level_spells" : 0
+        },
+        {
+            "level_num" : "2nd",
+            "proficiency_bonus" : "+2",
+            "features" : "Arcane Creamery", 
+            "cantrips_known" : 4,
+            "first_level_spells" : 2,
+            "second_level_spells" : 2,
+            "third_level_spells" : 0,
+            "fourth_level_spells" : 0,
+            "fifth_level_spells" : 0,
+            "sixth_level_spells" : 0,
+            "seventh_level_spells" : 0,
+            "eigth_level_spells" : 0,
+            "ninth_level_spells" : 0
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "Level": [
+        {
+            "level_num" : "1st",
+            "proficiency_bonus" : "+2",
+            "features" : "Divine Sense, Lay on Hands",
+            "first_level_spells" : 0,
+            "second_level_spells" : 0,
+            "third_level_spells" : 0,
+            "fourth_level_spells" : 0,
+            "fifth_level_spells" : 0            
+        }
+    ]
+}

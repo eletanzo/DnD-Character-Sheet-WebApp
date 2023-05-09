@@ -1,0 +1,12 @@
+{
+    "Level": [
+        {
+            "level_num" : "1st",
+            "proficiency_bonus" : "+2",
+            "martial_arts" : "1d4",
+            "ki_points" : 0,
+            "unarmored_movement_bonus" : 0,
+            "features" : "Unarmored Defense, Martial Arts"
+        }
+    ]
+}

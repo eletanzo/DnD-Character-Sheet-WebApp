@@ -1,0 +1,15 @@
+{
+    "Level": [
+        {
+            "level_num" : "1st",
+            "proficiency_bonus" : "+2",
+            "features" : "Favored Enemy, Natural Explorer, Deft Explorer (Optional), Favored Foe (Optional)",
+            "spells_known" : 0,
+            "first_level_spells" : 0,
+            "second_level_spells" : 0,
+            "third_level_spells" : 0,
+            "fourth_level_spells" : 0,
+            "fifth_level_spells" : 0            
+        }
+    ]
+}
