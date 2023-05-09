@@ -1,344 +1,352 @@
-
-<!-- Basically a 1:1 rip of the 5e sheet in terms of formatting -->
-<form action="">
-<div class="container-fluid px-3 mb-5">
-    <!-- Character name, level, background, race, alignment and experience header row -->
-    <div class="row">
-        <div class="col-sm card p-3">
-            <label for="character-name" class="form-label">Character Name</label>
-            <input class="form-control" type="text" name="character-name" id="character-name">
-        </div>
-        <div class="col-sm card p-3">
+<html>
+    <head>
+        <%- include('../partials/meta-content', { title: '5e Character Sheet' }) %>
+    </head>
+    <body>
+        <%- include('../partials/header') %>
+        <!-- Basically a 1:1 rip of the 5e sheet in terms of formatting -->
+        <form action="">
+        <div class="container-fluid px-3 mb-5">
+            <!-- Character name, level, background, race, alignment and experience header row -->
             <div class="row">
-                <div class="col">
-                    <label for="class-level" class="form-label">Class & Level</label>
-                    <input class="form-control" type="text" name="class-level" id="class-levle">
+                <div class="col-sm card p-3">
+                    <label for="character-name" class="form-label">Character Name</label>
+                    <input class="form-control" type="text" name="character-name" id="character-name">
                 </div>
-                <div class="col">
-                    <label for="background" class="form-label">Background</label>
-                    <input class="form-control" type="text" name="background" id="background">
-                </div>
-                <div class="col">
-                    <label for="player-name" class="form-label">Player Name</label>
-                    <input class="form-control" type="text" name="player-name" id="player-name"  >
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <label for="race" class="form-label">Race</label>
-                    <input class="form-control" type="text" name="race" id="race">
-                </div>
-                <div class="col">
-                    <label for="alignment" class="form-label">Alignment</label>
-                    <input class="form-control" type="text" name="alignment" id="alignment">
-                </div>
-                <div class="col">
-                    <label for="experience" class="form-label">Experience Points</label>
-                    <input class="form-control" type="text" name="experience" id="experience">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <!-- Skills, saves, prof., inspiration and attributes -->
-        <div class="col-sm">
-            <div class="row">
-                <div class="col-4 card">
-                    <label class="form-label" for="attr-strength">Strength</label>
-                    <input class="form-control" type="number" name="attr-strength" id="attr-strength" min="0" max="30">
-                    <label class="form-label" for="attr-dexterity">Dexterity</label>
-                    <input class="form-control" type="number" name="attr-dexterity" id="attr-dexterity" min="0" max="30">
-                    <label class="form-label" for="attr-constitution">Constitution</label>
-                    <input class="form-control" type="number" name="attr-constitution" id="attr-constitution" min="0" max="30">
-                    <label class="form-label" for="attr-intelligence">Intelligence</label>
-                    <input class="form-control" type="number" name="attr-intellgience" id="attr-intelligence" min="0" max="30">
-                    <label class="form-label" for="attr-wisdom">Wisdom</label>
-                    <input class="form-control" type="number" name="attr-wisdom" id="attr-wisdom" min="0" max="30">
-                    <label class="form-label" for="attr-charisma">Charisma</label>
-                    <input class="form-control" type="number" name="attr-charisma" id="attr-charisma" min="0" max="30">
-                </div>
-                <div class="col-8 card">
-                    <label for="inspiration" class="form-label">Inspiration</label>
-                    <input type="number" class="form-control" name="inspiration" id="inspiration">
-                    <label for="proficiency-bonus" class="form-label">Proficiency Bonus</label>
-                    <input type="number" class="form-control" name="proficiency-bonus" id="proficiency-bonus">
-                    <div class="container" id="saving-throws">
-                        <h4>Saving Throws</h4>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="strength-save" id="strength-save">
-                            <label for="strength-save" class="form-check-label">Strength</label>
+                <div class="col-sm card p-3">
+                    <div class="row">
+                        <div class="col">
+                            <label for="class-level" class="form-label">Class & Level</label>
+                            <input class="form-control" type="text" name="class-level" id="class-level">
                         </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="dexterity-save" id="dexterity-save">
-                            <label for="dexterity-save" class="form-check-label">Dexterity</label>
+                        <div class="col">
+                            <label for="background" class="form-label">Background</label>
+                            <input class="form-control" type="text" name="background" id="background">
                         </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="constitution-save" id="constitution-save">
-                            <label for="constitution-save" class="form-check-label">Constitution</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="intelligence-save" id="intelligence-save">
-                            <label for="intelligence-save" class="form-check-label">Intelligence</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="wisdom-save" id="wisdom-save">
-                            <label for="wisdom-save" class="form-check-label">Wisdom</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="charisma-save" id="charisma-save">
-                            <label for="charisma-save" class="form-check-label">Charisma</label>
+                        <div class="col">
+                            <label for="player-name" class="form-label">Player Name</label>
+                            <input class="form-control" type="text" name="player-name" id="player-name"  >
                         </div>
                     </div>
-                    <div class="container" id="skills">
-                        <h4>Skills</h4>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="skill-acrobatics" id="skill-acrobatics">
-                            <label for="skill-acrobatics" class="form-check-label">Acrobatics</label>
+                    <div class="row">
+                        <div class="col">
+                            <label for="race" class="form-label">Race</label>
+                            <input class="form-control" type="text" name="race" id="race">
                         </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="skill-animal-handling" id="skill-animal-handling">
-                            <label for="skill-animal-handling" class="form-check-label">Animal Handling</label>
+                        <div class="col">
+                            <label for="alignment" class="form-label">Alignment</label>
+                            <input class="form-control" type="text" name="alignment" id="alignment">
                         </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="skill-arcana" id="skill-arcana">
-                            <label for="skill-arcana" class="form-check-label">Arcana</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="skill-athletics" id="skill-athletics">
-                            <label for="skill-athletics" class="form-check-label">Athletics</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="skill-deception" id="skill-deception">
-                            <label for="skill-deception" class="form-check-label">Deception</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="skill-history" id="skill-history">
-                            <label for="skill-history" class="form-check-label">History</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="skill-insight" id="skill-insight">
-                            <label for="skill-insight" class="form-check-label">Insight</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="skill-intimidation" id="skill-intimidation">
-                            <label for="skill-intimidation" class="form-check-label">Intimidation</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="skill-investigation" id="skill-investigation">
-                            <label for="skill-investigation" class="form-check-label">Investigation</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="skill-medicine" id="skill-medicine">
-                            <label for="skill-medicine" class="form-check-label">Medicine</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="skill-nature" id="skill-nature">
-                            <label for="skill-nature" class="form-check-label">Nature</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="skill-perception" id="skill-perception">
-                            <label for="skill-perception" class="form-check-label">Perception</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="skill-performance" id="skill-performance">
-                            <label for="skill-performance" class="form-check-label">Performance</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="skill-persuasion" id="skill-persuasion">
-                            <label for="skill-persuasion" class="form-check-label">Persuasion</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="skill-religion" id="skill-religion">
-                            <label for="skill-religion" class="form-check-label">Religion</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="skill-sleight-of-hand" id="skill-sleight-of-hand">
-                            <label for="skill-sleight-of-hand" class="form-check-label">Sleight of Hand</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="skill-stealth" id="skill-stealth">
-                            <label for="skill-stealth" class="form-check-label">Stealth</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="skill-survival" id="skill-survival">
-                            <label for="skill-survival" class="form-check-label">Survival</label>
+                        <div class="col">
+                            <label for="experience" class="form-label">Experience Points</label>
+                            <input class="form-control" type="text" name="experience" id="experience">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <input type="number" class="form-control" name="passive-perception" id="passive-perception" style="width: 4rem">
-                <label for="passive-perception" class="form-label col col-form-label">Passive Perception</label>
-                
-            </div>
-            <div class="row">
-                <label for="other-proficiencies" class="form-label ">Other Proficiencies & Languages</label>
-                <textarea name="other-proficiencies" id="other-proficiencies" rows="10" class="form-control"></textarea>
-            </div>
-        </div>
-        <!-- Combat and equipment -->
-        <div class="col-sm">
-            <div class="container card">
-                <div class="row">
-                    <div class="col">
-                        <label for="armor-class" class="form-label">Armor Class</label>
-                        <input type="number" class="form-control" name="armor-class" id="armor-class">
-                    </div>
-                    <div class="col">
-                        <label for="initiative" class="form-label">Initiative</label>
-                        <input type="number" class="form-control" name="initiative" id="initiative">
-                    </div>
-                    <div class="col">
-                        <label for="speed" class="form-label">Speed</label>
-                        <input type="number" class="form-control" name="speed" id="speed">
-                    </div>
-                </div>
-                <div class="row">
-                    <fieldset>
-                    <div class="col">
-                        <div class="row">
-                            <label for="hitpoint-maximum" class="form-label col-sm-6 col-form-label">Hit Point Maximum</label>
-                            <div class="col-sm-6">
-                                <input type="number" class="form-control" name="hitpoint-maximum" id="hitpoint-maximum">
+                <!-- Skills, saves, prof., inspiration and attributes -->
+                <div class="col-sm">
+                    <div class="row">
+                        <div class="col-4 card">
+                            <label class="form-label" for="attr-strength">Strength</label>
+                            <input class="form-control" type="number" name="attr-strength" id="attr-strength" min="0" max="30">
+                            <label class="form-label" for="attr-dexterity">Dexterity</label>
+                            <input class="form-control" type="number" name="attr-dexterity" id="attr-dexterity" min="0" max="30">
+                            <label class="form-label" for="attr-constitution">Constitution</label>
+                            <input class="form-control" type="number" name="attr-constitution" id="attr-constitution" min="0" max="30">
+                            <label class="form-label" for="attr-intelligence">Intelligence</label>
+                            <input class="form-control" type="number" name="attr-intellgience" id="attr-intelligence" min="0" max="30">
+                            <label class="form-label" for="attr-wisdom">Wisdom</label>
+                            <input class="form-control" type="number" name="attr-wisdom" id="attr-wisdom" min="0" max="30">
+                            <label class="form-label" for="attr-charisma">Charisma</label>
+                            <input class="form-control" type="number" name="attr-charisma" id="attr-charisma" min="0" max="30">
+                        </div>
+                        <div class="col-8 card">
+                            <label for="inspiration" class="form-label">Inspiration</label>
+                            <input type="number" class="form-control" name="inspiration" id="inspiration">
+                            <label for="proficiency-bonus" class="form-label">Proficiency Bonus</label>
+                            <input type="number" class="form-control" name="proficiency-bonus" id="proficiency-bonus">
+                            <div class="container" id="saving-throws">
+                                <h4>Saving Throws</h4>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="strength-save" id="strength-save">
+                                    <label for="strength-save" class="form-check-label">Strength</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="dexterity-save" id="dexterity-save">
+                                    <label for="dexterity-save" class="form-check-label">Dexterity</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="constitution-save" id="constitution-save">
+                                    <label for="constitution-save" class="form-check-label">Constitution</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="intelligence-save" id="intelligence-save">
+                                    <label for="intelligence-save" class="form-check-label">Intelligence</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="wisdom-save" id="wisdom-save">
+                                    <label for="wisdom-save" class="form-check-label">Wisdom</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="charisma-save" id="charisma-save">
+                                    <label for="charisma-save" class="form-check-label">Charisma</label>
+                                </div>
                             </div>
+                            <div class="container" id="skills">
+                                <h4>Skills</h4>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="skill-acrobatics" id="skill-acrobatics">
+                                    <label for="skill-acrobatics" class="form-check-label">Acrobatics</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="skill-animal-handling" id="skill-animal-handling">
+                                    <label for="skill-animal-handling" class="form-check-label">Animal Handling</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="skill-arcana" id="skill-arcana">
+                                    <label for="skill-arcana" class="form-check-label">Arcana</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="skill-athletics" id="skill-athletics">
+                                    <label for="skill-athletics" class="form-check-label">Athletics</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="skill-deception" id="skill-deception">
+                                    <label for="skill-deception" class="form-check-label">Deception</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="skill-history" id="skill-history">
+                                    <label for="skill-history" class="form-check-label">History</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="skill-insight" id="skill-insight">
+                                    <label for="skill-insight" class="form-check-label">Insight</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="skill-intimidation" id="skill-intimidation">
+                                    <label for="skill-intimidation" class="form-check-label">Intimidation</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="skill-investigation" id="skill-investigation">
+                                    <label for="skill-investigation" class="form-check-label">Investigation</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="skill-medicine" id="skill-medicine">
+                                    <label for="skill-medicine" class="form-check-label">Medicine</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="skill-nature" id="skill-nature">
+                                    <label for="skill-nature" class="form-check-label">Nature</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="skill-perception" id="skill-perception">
+                                    <label for="skill-perception" class="form-check-label">Perception</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="skill-performance" id="skill-performance">
+                                    <label for="skill-performance" class="form-check-label">Performance</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="skill-persuasion" id="skill-persuasion">
+                                    <label for="skill-persuasion" class="form-check-label">Persuasion</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="skill-religion" id="skill-religion">
+                                    <label for="skill-religion" class="form-check-label">Religion</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="skill-sleight-of-hand" id="skill-sleight-of-hand">
+                                    <label for="skill-sleight-of-hand" class="form-check-label">Sleight of Hand</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="skill-stealth" id="skill-stealth">
+                                    <label for="skill-stealth" class="form-check-label">Stealth</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="skill-survival" id="skill-survival">
+                                    <label for="skill-survival" class="form-check-label">Survival</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input type="number" class="form-control" name="passive-perception" id="passive-perception" style="width: 4rem">
+                        <label for="passive-perception" class="form-label col col-form-label">Passive Perception</label>
+                        
+                    </div>
+                    <div class="row">
+                        <label for="other-proficiencies" class="form-label ">Other Proficiencies & Languages</label>
+                        <textarea name="other-proficiencies" id="other-proficiencies" rows="10" class="form-control"></textarea>
+                    </div>
+                </div>
+                <!-- Combat and equipment -->
+                <div class="col-sm">
+                    <div class="container card">
+                        <div class="row">
+                            <div class="col">
+                                <label for="armor-class" class="form-label">Armor Class</label>
+                                <input type="number" class="form-control" name="armor-class" id="armor-class">
+                            </div>
+                            <div class="col">
+                                <label for="initiative" class="form-label">Initiative</label>
+                                <input type="number" class="form-control" name="initiative" id="initiative">
+                            </div>
+                            <div class="col">
+                                <label for="speed" class="form-label">Speed</label>
+                                <input type="number" class="form-control" name="speed" id="speed">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <fieldset>
+                            <div class="col">
+                                <div class="row">
+                                    <label for="hitpoint-maximum" class="form-label col-sm-6 col-form-label">Hit Point Maximum</label>
+                                    <div class="col-sm-6">
+                                        <input type="number" class="form-control" name="hitpoint-maximum" id="hitpoint-maximum">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="current-hitpoints" class="form-label">Current Hit Points</label>
+                                    <input type="number" class="form-control" name="current-hitpoints" id="current-hitpoints">
+                                    </div>
+                                    <div class="col">
+                                        <label for="temporary-hitpoints" class="form-label">Temporary Hit Points</label>
+                                        <input type="number" class="form-control" name="temporary-hitpoints" id="temporary-hitpoints">
+                                    </div>
+                                </div>
+                            </div>
+                            </fieldset>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <label for="current-hitpoints" class="form-label">Current Hit Points</label>
-                            <input type="number" class="form-control" name="current-hitpoints" id="current-hitpoints">
+                            <fieldset>
+                                <legend>Hit Dice</legend>
+                                <div class="row g-0">
+                                    <label for="total-hit-dice" class="form-label col-sm-3">Total</label>
+                                    <div class="col-sm-4">
+                                        <input type="number" class="form-control" name="total-hit-dice"> <!-- Represents number of selected hit die. Associated hit-die and current corresponds with # in array total-hit-dice[] -->
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <select name="hit-die" class="form-select"> <!-- Selected hit die size. Associated total and current corresponds with # in array hit-die[] --> 
+                                            <option value="d6">d6</option>
+                                            <option value="d8">d8</option>
+                                            <option value="d10">d10</option>
+                                            <option value="d12">d12</option>
+                                        </select> 
+                                    </div>
+                                </div>
+                                <div class="row g-0">
+                                    <label for="total-hit-dice" class="form-label col-sm-3">Current</label>
+                                    <div class="col-sm-4">
+                                        <input type="number" class="form-control" name="current-hit-dice"> <!-- Represents number of current hit die. Associated hit-die and current corresponds with # in array total-hit-dice[] -->
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <select name="hit-die" class="form-select"> <!-- Selectable for right now; will be static later, reflecting the selected size from total-hit-dice[] --> 
+                                            <option value="d6">d6</option>
+                                            <option value="d8">d8</option>
+                                            <option value="d10">d10</option>
+                                            <option value="d12">d12</option>
+                                        </select> 
+                                    </div>
+                                </div>
+                            </fieldset>
                             </div>
                             <div class="col">
-                                <label for="temporary-hitpoints" class="form-label">Temporary Hit Points</label>
-                                <input type="number" class="form-control" name="temporary-hitpoints" id="temporary-hitpoints">
+                            <fieldset>
+                                <legend>Death Saves</legend>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <label for="death-save-passes">Successes</label>
+                                    </div>
+                                    <div class="col-sm">
+                                        <input type="checkbox" class="form-check-input" name="death-save-passes">
+                                        <input type="checkbox" class="form-check-input" name="death-save-passes">
+                                        <input type="checkbox" class="form-check-input" name="death-save-passes">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <label for="death-save-fails">Failures</label>
+                                    </div>
+                                    <div class="col-sm">
+                                        <input type="checkbox" class="form-check-input" name="death-save-fails">
+                                        <input type="checkbox" class="form-check-input" name="death-save-fails">
+                                        <input type="checkbox" class="form-check-input" name="death-save-fails">
+                                    </div>
+                                </div>
+                            </fieldset>
                             </div>
                         </div>
                     </div>
-                    </fieldset>
-                </div>
-                <div class="row">
-                    <div class="col">
-                    <fieldset>
-                        <legend>Hit Dice</legend>
+                    <div class="container card">
+                        <h4>Attacks & Spellcasting</h4>
                         <div class="row g-0">
-                            <label for="total-hit-dice" class="form-label col-sm-3">Total</label>
-                            <div class="col-sm-4">
-                                <input type="number" class="form-control" name="total-hit-dice"> <!-- Represents number of selected hit die. Associated hit-die and current corresponds with # in array total-hit-dice[] -->
+                            <div class="row g-0">
+                                <div class="col"><h5>Name</h5></div>
+                                <div class="col-3"><h5>Atk Bonus</h5></div>
+                                <div class="col"><h5>Damage/Type</h5></div>
                             </div>
-                            <div class="col-sm-5">
-                                <select name="hit-die" class="form-select"> <!-- Selected hit die size. Associated total and current corresponds with # in array hit-die[] --> 
-                                    <option value="d6">d6</option>
-                                    <option value="d8">d8</option>
-                                    <option value="d10">d10</option>
-                                    <option value="d12">d12</option>
-                                </select> 
+                            <div class="col">
+                                
+                                <input type="text" class="form-control" name="attack-name">
+                                <input type="text" class="form-control" name="attack-name">
+                                <input type="text" class="form-control" name="attack-name">
                             </div>
-                        </div>
-                        <div class="row g-0">
-                            <label for="total-hit-dice" class="form-label col-sm-3">Current</label>
-                            <div class="col-sm-4">
-                                <input type="number" class="form-control" name="current-hit-dice"> <!-- Represents number of current hit die. Associated hit-die and current corresponds with # in array total-hit-dice[] -->
+                            <div class="col-3">
+                                
+                                <input type="text" class="form-control" name="attack-bonus">
+                                <input type="text" class="form-control" name="attack-bonus">
+                                <input type="text" class="form-control" name="attack-bonus">
                             </div>
-                            <div class="col-sm-5">
-                                <select name="hit-die" class="form-select"> <!-- Selectable for right now; will be static later, reflecting the selected size from total-hit-dice[] --> 
-                                    <option value="d6">d6</option>
-                                    <option value="d8">d8</option>
-                                    <option value="d10">d10</option>
-                                    <option value="d12">d12</option>
-                                </select> 
+                            <div class="col">
+                                
+                                <input type="text" class="form-control" name="attack-damage">
+                                <input type="text" class="form-control" name="attack-damage">
+                                <input type="text" class="form-control" name="attack-damage">
                             </div>
                         </div>
-                    </fieldset>
+                        <textarea class="form-control" name="misc-attacks-and-spellcasting" id="misc-attacks-and-spellcasting" rows="10"></textarea>
                     </div>
-                    <div class="col">
-                    <fieldset>
-                        <legend>Death Saves</legend>
+                    <div class="container card">
+                        <h4>Equipment</h4>
                         <div class="row">
-                            <div class="col-sm">
-                                <label for="death-save-passes">Successes</label>
-                            </div>
-                            <div class="col-sm">
-                                <input type="checkbox" class="form-check-input" name="death-save-passes">
-                                <input type="checkbox" class="form-check-input" name="death-save-passes">
-                                <input type="checkbox" class="form-check-input" name="death-save-passes">
-                            </div>
+                            <div class="col">CP</div>
+                            <div class="col">SP</div>
+                            <div class="col">EP</div>
+                            <div class="col">GP</div>
+                            <div class="col">PP</div>
                         </div>
                         <div class="row">
-                            <div class="col-sm">
-                                <label for="death-save-fails">Failures</label>
-                            </div>
-                            <div class="col-sm">
-                                <input type="checkbox" class="form-check-input" name="death-save-fails">
-                                <input type="checkbox" class="form-check-input" name="death-save-fails">
-                                <input type="checkbox" class="form-check-input" name="death-save-fails">
-                            </div>
+                            <div class="col"><input type="number" class="form-control"></div>
+                            <div class="col"><input type="number" class="form-control"></div>
+                            <div class="col"><input type="number" class="form-control"></div>
+                            <div class="col"><input type="number" class="form-control"></div>
+                            <div class="col"><input type="number" class="form-control"></div>
                         </div>
-                    </fieldset>
+                        <textarea class="form-control" name="equipment" id="equipment" rows="15"></textarea>
                     </div>
                 </div>
-            </div>
-            <div class="container card">
-                <h4>Attacks & Spellcasting</h4>
-                <div class="row g-0">
-                    <div class="row g-0">
-                        <div class="col"><h5>Name</h5></div>
-                        <div class="col-3"><h5>Atk Bonus</h5></div>
-                        <div class="col"><h5>Damage/Type</h5></div>
-                    </div>
-                    <div class="col">
-                        
-                        <input type="text" class="form-control" name="attack-name">
-                        <input type="text" class="form-control" name="attack-name">
-                        <input type="text" class="form-control" name="attack-name">
-                    </div>
-                    <div class="col-3">
-                        
-                        <input type="text" class="form-control" name="attack-bonus">
-                        <input type="text" class="form-control" name="attack-bonus">
-                        <input type="text" class="form-control" name="attack-bonus">
-                    </div>
-                    <div class="col">
-                        
-                        <input type="text" class="form-control" name="attack-damage">
-                        <input type="text" class="form-control" name="attack-damage">
-                        <input type="text" class="form-control" name="attack-damage">
+                <!-- Features, traits and characteristics/ideals -->
+                <div class="col-sm">
+                    <div class="container card">
+                        <label for="personality-traits" class="form-label">Personality Traits</label>
+                        <textarea class="form-control" name="personality-traits" id="personality-traits" rows="4"></textarea>
+                        <label for="ideals" class="form-label">Ideals</label>
+                        <textarea name="ideals" id="ideals" rows="4" class="form-control"></textarea>
+                        <label for="bonds" class="form-label">Bonds</label>
+                        <textarea name="bonds" id="bonds" rows="4" class="form-control"></textarea>
+                        <label for="flaws" class="form-label">Flaws</label>
+                        <textarea name="flaws" id="flaws" rows="4" class="form-control"></textarea>
+                        <h4>Features & Traits</h4>
+                        <textarea name="features-and-traits" id="features-and-traits" rows="25" class="form-control"></textarea>
                     </div>
                 </div>
-                <textarea class="form-control" name="misc-attacks-and-spellcasting" id="misc-attacks-and-spellcasting" rows="10"></textarea>
-            </div>
-            <div class="container card">
-                <h4>Equipment</h4>
-                <div class="row">
-                    <div class="col">CP</div>
-                    <div class="col">SP</div>
-                    <div class="col">EP</div>
-                    <div class="col">GP</div>
-                    <div class="col">PP</div>
-                </div>
-                <div class="row">
-                    <div class="col"><input type="number" class="form-control"></div>
-                    <div class="col"><input type="number" class="form-control"></div>
-                    <div class="col"><input type="number" class="form-control"></div>
-                    <div class="col"><input type="number" class="form-control"></div>
-                    <div class="col"><input type="number" class="form-control"></div>
-                </div>
-                <textarea class="form-control" name="equipment" id="equipment" rows="15"></textarea>
             </div>
         </div>
-        <!-- Features, traits and characteristics/ideals -->
-        <div class="col-sm">
-            <div class="container card">
-                <label for="personality-traits" class="form-label">Personality Traits</label>
-                <textarea class="form-control" name="personality-traits" id="personality-traits" rows="4"></textarea>
-                <label for="ideals" class="form-label">Ideals</label>
-                <textarea name="ideals" id="ideals" rows="4" class="form-control"></textarea>
-                <label for="bonds" class="form-label">Bonds</label>
-                <textarea name="bonds" id="bonds" rows="4" class="form-control"></textarea>
-                <label for="flaws" class="form-label">Flaws</label>
-                <textarea name="flaws" id="flaws" rows="4" class="form-control"></textarea>
-                <h4>Features & Traits</h4>
-                <textarea name="features-and-traits" id="features-and-traits" rows="25" class="form-control"></textarea>
-            </div>
-        </div>
-    </div>
-</div>
-</form>
+        </form>
+        <%- include('../partials/footer') %>
+    </body>
+</html>
