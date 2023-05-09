@@ -12,7 +12,7 @@ async function getClassTable(classUrl) { //Scrapes the level up table from a cla
         const tableText = classTable.children().text() // Convert to text 
         startIndex = tableText.indexOf("Level\nP")
 
-        let columns = tableText.substring(startIndex, getNextDoubleNewLineCharIndex(tableText, startIndex))
+        let columns = tableText.substring(startIndex, getNextDoubleNewLineCharIndex(tableText, startIndex)) /* Getting column names of tables */
         let columnArray = columns.split("\n")
         startIndex = startIndex + columns.length + 3
 
@@ -28,7 +28,7 @@ async function getClassTable(classUrl) { //Scrapes the level up table from a cla
             }
             startIndex += 3
 
-            for (let j = 0; j < columnArray.length; j++) {
+            for (let j = 0; j < columnArray.length; j++) { /* JSON-ifying the results */
                 console.log(columnArray[j] + ": " + levelDetailsArray[j])
             }
         }
@@ -38,7 +38,7 @@ async function getClassTable(classUrl) { //Scrapes the level up table from a cla
     }
 }
 
-function getNextDoubleNewLineCharIndex(string, startIndex) { //Returns the index of the next pair of newline characters 
+function getNextDoubleNewLineCharIndex(string, startIndex) { //Returns the index of the next pair of newline characters in a string
     for (let i = startIndex; i < string.length; i++) {
         if (string[i] == "\n" && string[i + 1] == "\n") {
             return i
@@ -47,7 +47,7 @@ function getNextDoubleNewLineCharIndex(string, startIndex) { //Returns the index
     return -1
 }
 
-function getNextSingleNewLineCharIndex(string, startIndex) {
+function getNextSingleNewLineCharIndex(string, startIndex) { //Returns the index of the next newline character in a string
     for (let i = startIndex + 1; i < string.length; i++) {
         if (string[i] == "\n") {
             return i
