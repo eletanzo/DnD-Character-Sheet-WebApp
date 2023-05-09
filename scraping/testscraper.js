@@ -53,7 +53,7 @@ function getClassTable($) { //Scrapes the level up table from a class's page
         startIndex += 3
 
         for (let j = 0; j < columnArray.length; j++) { /* JSON-ifying the results */
-            level[columnArray[j] + []] = levelDetailsArray[j]
+            level[columnArray[j] + []] = levelDetailsArray[j] // Adding array to columnArray coerces to string 
         }
         // console.log(level)
     }
