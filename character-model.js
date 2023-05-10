@@ -139,6 +139,26 @@ const CharacterSchema = mongoose.Schema({
         stealth: Boolean,
         survival: Boolean
     },
+    halfProficiency: {
+        acrobatics: Boolean,
+        animalHandling: Boolean,
+        arcana: Boolean,
+        athletics: Boolean,
+        deception: Boolean,
+        history: Boolean,
+        insight: Boolean,
+        intimidation: Boolean,
+        investigation: Boolean,
+        medicine: Boolean,
+        nature: Boolean,
+        perception: Boolean,
+        performance: Boolean,
+        persuasion: Boolean,
+        religion: Boolean,
+        sleightOfHand: Boolean,
+        stealth: Boolean,
+        survival: Boolean
+    },
     passivePerception: {
         type: Number,
         required: true
