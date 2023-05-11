@@ -1,20 +1,27 @@
 const Account = require('../models/account-model')
 
-const render = (req, res, root_page_path, title) => {
-    res.render('frame', { page: root_page_path, title: title}, (err, html) => {
-        if (err) console.log(err)
+const render = (res, root_page_path, title, options={}) => {
+    res.render('frame', { page: root_page_path, title: title, options: options}, (err, html) => {
+        if (err) throw err
         else res.status(200).send(html)
     })
 }
 
 // Publicly-available views
-const homeView = (req, res) => { render(req, res, 'content/home', 'Home') }
-const errorView = (req, res) => { render(req, res, 'content/error', 'Error!') }
-const loginView = (req, res) => { render(req, res, 'content/login', 'Login') }
-const registerView = (req, res) => { render(req, res, 'content/register', 'Register') }
+const homeView = (req, res, next) => { render(res, 'content/home', 'Home'); next() }
+const loginView = (req, res, next) => { render(res, 'content/login', 'Login'); next() }
+const registerView = (req, res, next) => { render(res, 'content/register', 'Register'); next() }
+
+const error404View = (req, res, next) => { 
+    res.render('frame', { page: 'content/error', title: '404 Error!', options: { code: 404 }}, (err, html) => {
+        if (err) throw err
+        else res.status(404).send(html)
+    })
+    next() 
+}
 
 // Authenticated-only views
-const characterView = (req, res) => { render(req, res, 'auth/character', 'Character Sheet')}
+const characterView = (req, res, next) => { render(res, 'auth/character', 'Character Sheet')}
 
 const loginProcess = (req, res, next) => {
     req.session.regenerate((err) => {
@@ -64,7 +71,7 @@ const registerProcess = (req, res, next) => {
 
 module.exports = {
     homeView,
-    errorView,
+    error404View,
     loginView,
     registerView,
     characterView,

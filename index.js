@@ -65,7 +65,12 @@ App.use('/', require('./routes/router'))
 // ERROR HANDLING
 // =================================================================================================
 
-
+App.use((err, req, res, next) => {
+    res.status(err.status || 500)
+    res.send('Sorry! Server encountered an unexpected error. Error code: ' + res.statusCode)
+    console.log('ERROR HANDLER CAUGHT:')
+    console.log(err)
+})
 
 // =================================================================================================
 // STARTUP
