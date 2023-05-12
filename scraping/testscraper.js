@@ -8,11 +8,14 @@ async function getClassData(classUrl) {
     try {
         const response = await axios.get(classUrl)
         const $ = cheerio.load(response.data)
-        getClassTable($)
-        getClassHitpoints($)
-        getClassProficiencies($)
-        getClassEquipment($)
+        classJson = {}
 
+        classJson["table"] = getClassTable($)
+        classJson["hit points"] = getClassHitpoints($)
+        classJson["proficiencies"] = getClassProficiencies($)
+        classJson["equipment"] = getClassEquipment($)
+
+        // console.log(classJson)
     }
     catch (error) {
         console.error(error)
@@ -38,17 +41,19 @@ function getClassEquipment($) {
         string = equipmentText.substring(startIndex, getNextInstanceOfCharacter(equipmentText, startIndex, "\n"))
         startIndex += string.length
 
-        if(string[0] == "\n") string = string.slice(1)
-        if(string[string.length] == "\n") string = string.slice(0, string.length - 1)
-        
+        if (string[0] == "\n") string = string.slice(1) // Removing trailing/starting newlines
+        if (string[string.length] == "\n") string = string.slice(0, string.length - 1)
+
         equipmentList.push(string)
     }
 
     let equipmentJson = {}
-    for(let i = 0; i < equipmentList.length; i++) {
+    for (let i = 0; i < equipmentList.length; i++) {
         equipmentJson["Equipment " + (i + 1)] = equipmentList[i]
     }
-    console.log(equipmentJson)
+    // console.log(equipmentJson)
+
+    return equipmentJson
 }
 
 /* Returns information related to the class's proficiencies including armor, 
@@ -119,10 +124,12 @@ function getClassTable($) { //Scrapes the level up table from a class's page
     startIndex = startIndex + columns.length + 3
 
     let level = {}
+    let final = {}
 
     for (let i = 0; i < 20; i++) { //For each level, grab a row of the table
         let levelDetailsArray = []
 
+        //Creates level object
         for (let k = 0; k < columnArray.length; k++) { //Grabbing individual element values
             element = tableText.substring(startIndex, getNextInstanceOfCharacter(tableText, startIndex, "\n"))
             if (k != 0) levelDetailsArray.push(element.substring(1, element.length))
@@ -135,8 +142,13 @@ function getClassTable($) { //Scrapes the level up table from a class's page
         for (let j = 0; j < columnArray.length; j++) { /* JSON-ifying the results */
             level[columnArray[j] + []] = levelDetailsArray[j] // Adding array to columnArray coerces to string 
         }
+        console.log(level)
+        final[i] = level
+        console.log(i)
     }
-    // console.log(level)
+    
+    console.log(final)
+
 
     return level
 }
