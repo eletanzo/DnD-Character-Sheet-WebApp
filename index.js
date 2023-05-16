@@ -18,6 +18,14 @@ const session = require('express-session')
 
 const TIMEOUT_HOURS = 1 // Number of hours before a login session expires
 const App = express()
+const DATABASENAME = 'accountDB'
+mongoose.connect(
+    `mongodb://127.0.0.1:27017/${DATABASENAME}`, 
+    { useNewUrlParser: true, useUnifiedTopology: true },
+    (err) => {
+        if (!err) console.log(`Mongoose connected successfully to ${DATABASENAME}`)
+        else throw err
+    })
 
 // =================================================================================================
 // CONFIGURATIONS

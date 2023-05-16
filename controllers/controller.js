@@ -1,5 +1,5 @@
-const {Account} = require('../models/account-model')
-const {Character} = require('../models/account-model')
+const Account = require('../models/account-model')
+const Character = require('../models/character-model')
 
 
 // const Character = require('../models/character-model')
