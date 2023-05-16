@@ -1,11 +1,6 @@
-<html>
-    <head>
-        <%- include('../partials/meta-content', { title: '5e Character Sheet' }) %>
-    </head>
-    <body>
-        <%- include('../partials/header') %>
+
         <!-- Basically a 1:1 rip of the 5e sheet in terms of formatting -->
-        <form action="">
+        <form id="characterCreation" action="/character" method="POST">
         <div class="container-fluid px-3 mb-5">
             <!-- Character name, level, background, race, alignment and experience header row -->
             <div class="row">
@@ -346,7 +341,5 @@
                 </div>
             </div>
         </div>
+        <input type="submit" value="Submit">
         </form>
-        <%- include('../partials/footer') %>
-    </body>
-</html>

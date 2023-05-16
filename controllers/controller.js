@@ -1,4 +1,8 @@
-const Account = require('../models/account-model')
+const {Account} = require('../models/account-model')
+const {Character} = require('../models/account-model')
+
+
+// const Character = require('../models/character-model')
 
 const render = (req, res, root_page_path, title) => {
     res.render('frame', { page: root_page_path, title: title}, (err, html) => {
@@ -12,6 +16,7 @@ const homeView = (req, res) => { render(req, res, 'content/home', 'Home') }
 const errorView = (req, res) => { render(req, res, 'content/error', 'Error!') }
 const loginView = (req, res) => { render(req, res, 'content/login', 'Login') }
 const registerView = (req, res) => { render(req, res, 'content/register', 'Register') }
+
 
 // Authenticated-only views
 const characterView = (req, res) => { render(req, res, 'auth/character', 'Character Sheet')}
@@ -62,6 +67,53 @@ const registerProcess = (req, res, next) => {
     })
 }
 
+const characterProcess = (req, res, next) => {
+    console.log(req.body)
+    Character.create({
+        name: req.body['character-name'],
+        // class: req.body[''],
+        background: req.body.background,
+        playerName: req.body['player-name'],
+        race: req.body.race,
+        alignment: req.body.alignment,
+        experience: req.body.experience,
+        strength: req.body['attr-strength'],
+        dexterity: req.body['attr-dexterity'],
+        constitution: req.body['attr-constitution'],
+        intelligence: req.body['attr-intelligence'],
+        wisdom: req.body['attr-wisdom'],
+        charisma: req.body['attr-charisma'],
+        proficiencyBonus: req.body['proficiency-bonus'],
+        passivePerception: req.body['passive-perception'],
+        otherProficiencies: req.body['other-proficiencies'],
+        armorClass: req.body['armor-class'],
+        initiative: req.body.initiative,
+        speed: req.body.speed,
+        hitPointMaximum: req.body['hitpoint-maximum'],
+        currentHitPoints: req.body['current-hitpoints'],
+        temporaryHitPoints: req.body['temporary-hitpoints'],
+        totalHitDice: req.body['total-hit-dice'],
+        hitDie: req.body['hit-die'],
+        currentHitDice: req.body['current-hit-dice'],
+        attackName: req.body['attack-name'],
+        attackBonus: req.body['attack-bonus'],
+        attackDamage: req.body['attack-damage'],
+        miscAttacksSpellcasting: req.body['misc-attacks-and-spellcasting'],
+        equipment: req.body.equipment,
+        personalityTraits: req.body['personality-traits'],
+        ideals: req.body.ideals,
+        bonds: req.body.bonds,
+        flaws: req.body.flaws,
+        featuresAndTraits: req.body['features-and-traits']
+    }, (err, newCharacter) => {
+        if (err) return next(err)
+        req.flash('success', 'Character created!')
+        res.redirect('/character')
+    })
+}
+
+
+
 module.exports = {
     homeView,
     errorView,
@@ -69,5 +121,6 @@ module.exports = {
     registerView,
     characterView,
     loginProcess,
-    registerProcess
+    registerProcess,
+    characterProcess
 }

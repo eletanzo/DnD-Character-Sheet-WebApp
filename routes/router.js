@@ -8,7 +8,8 @@ const {
     registerView,
     characterView,
     loginProcess,
-    registerProcess
+    registerProcess,
+    characterProcess
 } = require('../controllers/controller')
 
 // INITIALIZATIONS
@@ -40,6 +41,7 @@ router.get('/character', isAuthenticated('/login'), characterView) // Authentica
 // POST routes
 router.post('/login', loginProcess)
 router.post('/register', registerProcess)
+router.post('/character', characterProcess)
 
 // EXPORT
 
