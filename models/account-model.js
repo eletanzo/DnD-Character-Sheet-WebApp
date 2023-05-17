@@ -38,6 +38,10 @@ const AccountSchema = mongoose.Schema({
         type: String,
         required: true,
         
+    },
+    characters: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'Character'
     }
 }, {
     // Static functions built into the schema, callable by Account.staticFunctionName()
