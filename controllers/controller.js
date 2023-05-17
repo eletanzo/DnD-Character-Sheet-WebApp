@@ -70,7 +70,8 @@ const characterProcess = (req, res, next) => {
     console.log(req.body)
     db.Character.create({
         name: req.body['character-name'],
-        // class: req.body[''],
+        class: req.body.class,
+        level: req.body.level,
         background: req.body.background,
         playerName: req.body['player-name'],
         race: req.body.race,
