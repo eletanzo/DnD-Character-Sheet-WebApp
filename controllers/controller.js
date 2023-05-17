@@ -1,5 +1,4 @@
-const Account = require('../models/account-model')
-const Character = require('../models/character-model')
+const db = require('../models')
 
 
 // const Character = require('../models/character-model')
@@ -24,7 +23,7 @@ const characterView = (req, res) => { render(req, res, 'auth/character', 'Charac
 const loginProcess = (req, res, next) => {
     req.session.regenerate((err) => {
         if (err) return next(err)
-        Account.findOne({ 'username': req.body.username }, (err, account) => {
+        db.Account.findOne({ 'username': req.body.username }, (err, account) => {
             if (err) return next(err)
             else if (!account) { // No error but no account means wrong username
                 req.flash('error', 'The username you entered is incorrect. Please try again')
@@ -56,7 +55,7 @@ const loginProcess = (req, res, next) => {
 }
 
 const registerProcess = (req, res, next) => {
-    Account.create({
+    db.Account.create({
         username: req.body.username,
         email: req.body.email,
         password: req.body.password // Password is hashed by default from the .pre('save',...) in model
@@ -69,7 +68,7 @@ const registerProcess = (req, res, next) => {
 
 const characterProcess = (req, res, next) => {
     console.log(req.body)
-    Character.create({
+    db.Character.create({
         name: req.body['character-name'],
         // class: req.body[''],
         background: req.body.background,
