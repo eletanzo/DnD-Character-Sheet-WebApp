@@ -19,7 +19,7 @@ async function getClassData(classUrl) {
         classJson["equipment"] = getClassEquipment($)
         classJson["class features"] = getClassFeatures($)
 
-        // console.log(classJson)
+        console.log(classJson)
         return classJson
     }
     catch (error) {
@@ -28,17 +28,17 @@ async function getClassData(classUrl) {
 
 }
 
-/* Returns the name of the class */
+/* Returns the name of the class as a string */
 function getClassName($) {
-    classNameInfo = $("main content")
-    className = classNameInfo.next().text()
-    console.log(className)
-    return className
+    classNameInfo = $(".page-title")
+    return classNameInfo.text()
 }
 
-/* Returns the description of the class */
+/* Returns the description of the class as a string*/
 function getClassDescription($) {
-    
+    classDescriptionInfo = $("#page-content strong em")
+    // console.log(classDescriptionInfo.first().text())
+    return classDescriptionInfo.first().text()
 }
 
 /* Returns everything below the eqipment tab on the class page */
@@ -136,7 +136,6 @@ function getClassProficiencies($) {
         "Skill Proficiency": proficienciesList[4]
     }
     // console.log(proficienciesJson)
-
     return proficienciesJson
 }
 
@@ -158,7 +157,6 @@ function getClassHitpoints($) {
         "Hit Points Per Level": higherLevelHitpoints
     }
     // console.log(hitPointJson)
-
     return hitPointJson
 }
 
@@ -194,7 +192,6 @@ function getClassTable($) { //Scrapes the level up table from a class's page
         final[i + 1] = level
     }
     // console.log(final)
-
     return final
 }
 
@@ -217,5 +214,24 @@ function getNextInstanceOfCharacter(string, startIndex, char) {
     }
     return -1
 }
+
+/* Writes given class Json object to a Json file */
+function writeClassJson(jsonObject) {
+    //Create new file
+
+    //Write to file
+}
+
+function writeAllClasses() {
+    urlBase = "http://dnd5e.wikidot.com/"
+    classList = ["wizard", "rogue", "artificer", "barbarian",
+        "bard", "cleric", "druid", "fighter", "monk", "paladin",
+        "ranger", "sorcerer", "warlock"]
+
+    for (let i = 0; i < classList.length; i++) {
+        writeClassJson(getClassData(urlBase + classList[i]))
+    }
+}
+
 
 getClassData("http://dnd5e.wikidot.com/wizard")
