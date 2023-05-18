@@ -3,7 +3,6 @@ const axios = require("axios")
 const fs = require("fs")
 const { start } = require("repl")
 const { Console } = require("console")
-const { index } = require("cheerio/lib/api/traversing")
 
 /* Returns a JSON object containing all of the information on a class's wikidot page */
 async function getClassData(classUrl) {
@@ -12,12 +11,16 @@ async function getClassData(classUrl) {
         const $ = cheerio.load(response.data)
         classJson = {}
 
+        classJson["name"] = getClassName($)
+        classJson["description"] = getClassDescription($)
         classJson["table"] = getClassTable($)
         classJson["hit points"] = getClassHitpoints($)
         classJson["proficiencies"] = getClassProficiencies($)
         classJson["equipment"] = getClassEquipment($)
-        getClassFeatures($)
+        classJson["class features"] = getClassFeatures($)
+
         // console.log(classJson)
+        return classJson
     }
     catch (error) {
         console.error(error)
@@ -25,37 +28,48 @@ async function getClassData(classUrl) {
 
 }
 
+/* Returns the name of the class */
+function getClassName($) {
+    classNameInfo = $("main content")
+    className = classNameInfo.next().text()
+    console.log(className)
+    return className
+}
+
+/* Returns the description of the class */
+function getClassDescription($) {
+    
+}
+
 /* Returns everything below the eqipment tab on the class page */
 function getClassFeatures($) {
     searchTerms = []
-    for(let i = 4; i < 25; i++) searchTerms.push("#toc" + i) // Toc values of headers. Starts at 4 because every class is consistent up to toc4
+    classFeatures = {}
+    for (let i = 4; i < 25; i++) searchTerms.push("#toc" + i) // Toc values of headers. Starts at 4 because every class is consistent up to toc4
 
     index = 0
-    while(true) {
-        featureStart = $(searchTerms[index])
-        featureEnd = $(searchTerms[index + 1])
-        feature = featureStart.nextUntil(featureEnd)
-        
-        console.log(feaature.text())
-        if(featureText == "") break;
+    while (true) {
+        currentFeatureText = [] // Array to hold text returned from .next().text(). Need array for multi-paragraph entries
 
-        break //remove later
+        featureStart = $(searchTerms[index]) // Toc we are currently processing
+        featureEnd = $(searchTerms[index + 1]) // The next Toc after the currently processed one. Bound for what text will be grabbed
+
+        featureTitle = featureStart.text() // Name of class feature
+        if (featureStart.text() == "") break // If last toc has been reached and current toc search resulted in a blank
+
+        while (true) {
+            featureStart = featureStart.next()
+            if (featureStart.prop("tagName") == featureEnd.prop("tagName")) break // if we have reached the next toc, meaning we finished processing the current one
+            thisText = featureStart.text()
+            thisText = thisText.replace(/\n/g, '') // Replaces all newline (\n) characters
+            currentFeatureText.push(thisText)
+        }
+        classFeatures[featureTitle] = currentFeatureText
+
         index++
     }
-
-    test = $("#toc50")
-    console.log("Val: \n")
-    console.log(test.text())
-
-    // feature = $("#toc4")
-    // for (let i = 0; i < 100; i++) {
-    //     thing = thing.next()
-    //     text = thing.text()
-    //     if (text != "") {
-    //         console.log(thing.text())
-    //         console.log("\nDIV\n")
-    //     }
-    // }
+    // console.log(classFeatures)
+    return classFeatures
 }
 
 /* Returns information related to a class's starting equipment as a JSON object */
