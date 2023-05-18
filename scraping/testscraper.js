@@ -2,6 +2,8 @@ const cheerio = require("cheerio")
 const axios = require("axios")
 const fs = require("fs")
 const { start } = require("repl")
+const { Console } = require("console")
+const { index } = require("cheerio/lib/api/traversing")
 
 /* Returns a JSON object containing all of the information on a class's wikidot page */
 async function getClassData(classUrl) {
@@ -14,13 +16,46 @@ async function getClassData(classUrl) {
         classJson["hit points"] = getClassHitpoints($)
         classJson["proficiencies"] = getClassProficiencies($)
         classJson["equipment"] = getClassEquipment($)
-
+        getClassFeatures($)
         // console.log(classJson)
     }
     catch (error) {
         console.error(error)
     }
 
+}
+
+/* Returns everything below the eqipment tab on the class page */
+function getClassFeatures($) {
+    searchTerms = []
+    for(let i = 4; i < 25; i++) searchTerms.push("#toc" + i) // Toc values of headers. Starts at 4 because every class is consistent up to toc4
+
+    index = 0
+    while(true) {
+        featureStart = $(searchTerms[index])
+        featureEnd = $(searchTerms[index + 1])
+        feature = featureStart.nextUntil(featureEnd)
+        
+        console.log(feaature.text())
+        if(featureText == "") break;
+
+        break //remove later
+        index++
+    }
+
+    test = $("#toc50")
+    console.log("Val: \n")
+    console.log(test.text())
+
+    // feature = $("#toc4")
+    // for (let i = 0; i < 100; i++) {
+    //     thing = thing.next()
+    //     text = thing.text()
+    //     if (text != "") {
+    //         console.log(thing.text())
+    //         console.log("\nDIV\n")
+    //     }
+    // }
 }
 
 /* Returns information related to a class's starting equipment as a JSON object */
@@ -142,9 +177,7 @@ function getClassTable($) { //Scrapes the level up table from a class's page
         for (let j = 0; j < columnArray.length; j++) { /* JSON-ifying the results */
             level[columnArray[j] + []] = levelDetailsArray[j] // Adding array to columnArray coerces to string 
         }
-        // console.log(level)
         final[i + 1] = level
-        // console.log(i)
     }
     // console.log(final)
 
