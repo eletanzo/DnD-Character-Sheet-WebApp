@@ -2,7 +2,7 @@
 This is a module intended to handle the MongoDB connection with our Character database
 and all operations included with that, including authentication, sessions and encryption.
 */
-mongoose = require('mongoose')
+const mongoose = require('mongoose')
 
 const CharacterSchema = mongoose.Schema({
     playerName: {

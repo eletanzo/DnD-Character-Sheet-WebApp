@@ -109,9 +109,9 @@ const characterProcess = (req, res, next) => {
     }, (err, newCharacter) => {
         if (err) return next(err)
         //add character to user
-        db.Account.findOneAndUpdate({username: req.session.user.username}, {$push: {characters: newCharacter._id}}, {new: true}, (err, updatedAccount) => {
+        db.Account.findOneAndUpdate({_id: req.session.user.userid}, {$push: {characters: newCharacter._id}}, {new: true}, (err, updatedAccount) => {
             if (err) return next(err)
-            console.log(updatedAccount)
+            // console.log(updatedAccount)
         })
 
         req.flash('success', 'Character created!')
