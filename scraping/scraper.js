@@ -212,7 +212,7 @@ function getNextInstanceOfCharacter(string, startIndex, char) {
             return i
         }
     }
-    return -1
+    return string.length
 }
 
 /* Writes given class Json object to a Json file */
@@ -256,7 +256,7 @@ async function getItemData(url) {
 
 /* This method gets all information related to an item including the 
    name, type, attunement, source, and description page contents */
-function scrapeItemPage($) {
+async function scrapeItemPage($) {
     baseTerm = "#wiki-tab-0-"
     searchTerms = []
     for (let i = 0; i < 8; i++) searchTerms.push(baseTerm + i)
@@ -285,17 +285,47 @@ function scrapeItemPage($) {
             currentItem = {}
             currentItemArray = currentItemText.split("\n")
 
-            if(currentItemArray[1] == '') break
+            if (currentItemArray[1] == '') break
 
             for (let k = 0; k < columns.length; k++) {
                 currentItem[columns[k]] = currentItemArray[k]
             }
+            currentItem["description"] = await getItemDescription(currentItem[columns[0]])
             currentItemGroup[index++] = currentItem
         }
 
         allItems[itemRarities[i]] = currentItemGroup
     }
-    console.log(allItems)
+    // console.log(allItems)
+}
+
+/* Takes the name of an item and accesses the page associated
+   with it to get the item's description. */
+async function getItemDescription(itemName) {
+    urlBase = "http://dnd5e.wikidot.com/wondrous-items:"
+
+    pieces = itemName.split(" ") //Removing spaces and replacing with "-"
+    result = pieces.join("-")                                                   //NEED TO REDO THIS METHOD, NEED TO ACCESS THE HREF WITH 
+                                                                                //ITEM LINK BECAUSE OF INCONSISTENT FORMATTING
+
+    pieces2 = result.split("'") //Removing ' and replacing with nothing
+    result2 = pieces2.join("")
+
+    result3 = result2.substring(0, getNextInstanceOfCharacter(result2, 0, ",")) //removing everything after any found commas
+    
+    // console.log("REVISED NAME: " + result2)
+
+    url = urlBase + result3
+
+    const response = await axios.get(url)
+    const $ = cheerio.load(response.data)
+
+    data = $("#page-content").children()
+    text = data.text()
+
+    // console.log(text)
+
+    return text
 }
 
 getItemData("http://dnd5e.wikidot.com/wondrous-items")
