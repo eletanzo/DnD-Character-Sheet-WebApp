@@ -224,6 +224,7 @@ function writeClassJson(jsonObject, fileName) {
     fs.writeFileSync(file, jsonData)
 }
 
+/* Write each class' info to JSON files */
 async function writeAllClasses() {
     urlBase = "http://dnd5e.wikidot.com/"
     classList = ["wizard", "rogue", "artificer", "barbarian",
@@ -236,4 +237,65 @@ async function writeAllClasses() {
     }
 }
 
-writeAllClasses()
+// writeAllClasses()
+
+/* ---------------MAGIC ITEM SCRAPING--------------- */
+
+/* Returns a JSON object containing all wonderous items */
+async function getItemData(url) {
+    try {
+        const response = await axios.get(url)
+        const $ = cheerio.load(response.data)
+
+        scrapeItemPage($)
+    }
+    catch (error) {
+        console.error(error)
+    }
+}
+
+/* This method gets all information related to an item including the 
+   name, type, attunement, source, and description page contents */
+function scrapeItemPage($) {
+    baseTerm = "#wiki-tab-0-"
+    searchTerms = []
+    for (let i = 0; i < 8; i++) searchTerms.push(baseTerm + i)
+
+    itemRarities = ["common", "uncommon", "rare", "very rare", "legendary", "artifact", "unique", "???"]
+    allItems = {}
+
+    for (let i = 0; i < 8; i++) {                                           //CHANGE BACK TO 8 WHEN DONE TESTING
+        pageData = $(searchTerms[i]) // <div id="wiki-tab-0-0" ... /div>
+        pageText = pageData.text()
+        // console.log(pageText)
+
+        /* Getting the column names from table */
+        columns = []
+        startIndex = 8
+        columnText = pageText.substring(startIndex, getNextDoubleNewLineCharIndex(pageText, startIndex))
+        startIndex = startIndex + columnText.length + 3
+        columns = columnText.split("\n")
+
+        currentItemGroup = {}
+        index = 0
+        while (true) { // Getting each item
+            currentItemText = pageText.substring(startIndex, getNextDoubleNewLineCharIndex(pageText, startIndex))
+            // console.log(currentItemText)
+            startIndex = startIndex + currentItemText.length + 3
+            currentItem = {}
+            currentItemArray = currentItemText.split("\n")
+
+            if(currentItemArray[1] == '') break
+
+            for (let k = 0; k < columns.length; k++) {
+                currentItem[columns[k]] = currentItemArray[k]
+            }
+            currentItemGroup[index++] = currentItem
+        }
+
+        allItems[itemRarities[i]] = currentItemGroup
+    }
+    console.log(allItems)
+}
+
+getItemData("http://dnd5e.wikidot.com/wondrous-items")
