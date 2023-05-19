@@ -1,6 +1,7 @@
 const db = require('../models')
 
 
+
 // const Character = require('../models/character-model')
 
 const render = (req, res, root_page_path, title) => {
@@ -67,7 +68,6 @@ const registerProcess = (req, res, next) => {
 }
 
 const characterProcess = (req, res, next) => {
-    console.log(req.body)
     db.Character.create({
         name: req.body['character-name'],
         class: req.body.class,
@@ -105,9 +105,17 @@ const characterProcess = (req, res, next) => {
         bonds: req.body.bonds,
         flaws: req.body.flaws,
         featuresAndTraits: req.body['features-and-traits']
+        
     }, (err, newCharacter) => {
         if (err) return next(err)
+        //add character to user
+        db.Account.findOneAndUpdate({username: req.session.user.username}, {$push: {characters: newCharacter._id}}, {new: true}, (err, updatedAccount) => {
+            if (err) return next(err)
+            console.log(updatedAccount)
+        })
+
         req.flash('success', 'Character created!')
+       
         res.redirect('/character')
     })
 }
