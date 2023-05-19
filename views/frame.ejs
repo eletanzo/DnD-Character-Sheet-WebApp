@@ -1,0 +1,10 @@
+<html>
+    <head>
+        <%- include('./partials/meta-content', { title: title }) %>
+    </head>
+    <body>
+        <%- include('./partials/header') %>
+        <%- include(`./${page}`) %>
+        <%- include('./partials/footer') %>
+    </body>
+</html>

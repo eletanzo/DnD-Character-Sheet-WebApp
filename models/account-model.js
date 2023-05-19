@@ -4,17 +4,8 @@ and all operations included with that, including authentication, sessions and en
 */
 const bcrypt = require('bcrypt')
 const mongoose = require('mongoose')
-
-const DATABASENAME = 'accountDB'
 const SALT_WORK_FACTOR = 10 // Default, can be increased for further passes and increased randomness
 
-mongoose.connect(
-    `mongodb://127.0.0.1:27017/${DATABASENAME}`, 
-    { useNewUrlParser: true, useUnifiedTopology: true },
-    (err) => {
-        if (!err) console.log(`Mongoose connected successfully to ${DATABASENAME}`)
-        else throw err
-    })
 
 const validateEmail = function(email) {
     var emailRegX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
@@ -47,6 +38,10 @@ const AccountSchema = mongoose.Schema({
         type: String,
         required: true,
         
+    },
+    characters: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'Character'
     }
 }, {
     // Static functions built into the schema, callable by Account.staticFunctionName()
@@ -83,5 +78,7 @@ AccountSchema.pre('save', function(next) {
         })
     }
 })
+
+
 
 module.exports = mongoose.model('Account', AccountSchema)
