@@ -1,0 +1,284 @@
+{
+    "name": "Warlock",
+    "description": "Warlocks are seekers of the knowledge that lies hidden in the fabric of the multiverse. Through pacts made with mysterious beings of supernatural power, warlocks unlock magical effects both subtle and spectacular.",
+    "table": {
+        "1": {
+            "Level": "1st",
+            "Proficiency Bonus": "+2",
+            "Features": "Otherworldly Patron, Pact Magic",
+            "Cantrips Known": "2",
+            "Spells Known": "2",
+            "Spell Slots": "1",
+            "Slot Level": "1st",
+            "Invocations Known": "-"
+        },
+        "2": {
+            "Level": "2nd",
+            "Proficiency Bonus": "+2",
+            "Features": "Eldritch Invocations",
+            "Cantrips Known": "2",
+            "Spells Known": "3",
+            "Spell Slots": "2",
+            "Slot Level": "1st",
+            "Invocations Known": "2"
+        },
+        "3": {
+            "Level": "3rd",
+            "Proficiency Bonus": "+2",
+            "Features": "Pact Boon",
+            "Cantrips Known": "2",
+            "Spells Known": "4",
+            "Spell Slots": "2",
+            "Slot Level": "2nd",
+            "Invocations Known": "2"
+        },
+        "4": {
+            "Level": "4th",
+            "Proficiency Bonus": "+2",
+            "Features": "Ability Score Improvement, Eldritch Versatility (Optional)",
+            "Cantrips Known": "3",
+            "Spells Known": "5",
+            "Spell Slots": "2",
+            "Slot Level": "2nd",
+            "Invocations Known": "2"
+        },
+        "5": {
+            "Level": "5th",
+            "Proficiency Bonus": "+3",
+            "Features": "",
+            "Cantrips Known": "3",
+            "Spells Known": "6",
+            "Spell Slots": "2",
+            "Slot Level": "3rd",
+            "Invocations Known": "3"
+        },
+        "6": {
+            "Level": "6th",
+            "Proficiency Bonus": "+3",
+            "Features": "Otherworldly Patron feature",
+            "Cantrips Known": "3",
+            "Spells Known": "7",
+            "Spell Slots": "2",
+            "Slot Level": "3rd",
+            "Invocations Known": "3"
+        },
+        "7": {
+            "Level": "7th",
+            "Proficiency Bonus": "+3",
+            "Features": "",
+            "Cantrips Known": "3",
+            "Spells Known": "8",
+            "Spell Slots": "2",
+            "Slot Level": "4th",
+            "Invocations Known": "4"
+        },
+        "8": {
+            "Level": "8th",
+            "Proficiency Bonus": "+3",
+            "Features": "Ability Score Improvement, Eldritch Versatility (Optional)",
+            "Cantrips Known": "3",
+            "Spells Known": "9",
+            "Spell Slots": "2",
+            "Slot Level": "4th",
+            "Invocations Known": "4"
+        },
+        "9": {
+            "Level": "9th",
+            "Proficiency Bonus": "+4",
+            "Features": "",
+            "Cantrips Known": "3",
+            "Spells Known": "10",
+            "Spell Slots": "2",
+            "Slot Level": "5th",
+            "Invocations Known": "5"
+        },
+        "10": {
+            "Level": "10th",
+            "Proficiency Bonus": "+4",
+            "Features": "Otherworldly Patron feature",
+            "Cantrips Known": "4",
+            "Spells Known": "10",
+            "Spell Slots": "2",
+            "Slot Level": "5th",
+            "Invocations Known": "5"
+        },
+        "11": {
+            "Level": "11th",
+            "Proficiency Bonus": "+4",
+            "Features": "Mystic Arcanum (6th level)",
+            "Cantrips Known": "4",
+            "Spells Known": "11",
+            "Spell Slots": "3",
+            "Slot Level": "5th",
+            "Invocations Known": "5"
+        },
+        "12": {
+            "Level": "12th",
+            "Proficiency Bonus": "+4",
+            "Features": "Ability Score Improvement, Eldritch Versatility (Optional)",
+            "Cantrips Known": "4",
+            "Spells Known": "11",
+            "Spell Slots": "3",
+            "Slot Level": "5th",
+            "Invocations Known": "6"
+        },
+        "13": {
+            "Level": "13th",
+            "Proficiency Bonus": "+5",
+            "Features": "Mystic Arcanum (7th level)",
+            "Cantrips Known": "4",
+            "Spells Known": "12",
+            "Spell Slots": "3",
+            "Slot Level": "5th",
+            "Invocations Known": "6"
+        },
+        "14": {
+            "Level": "14th",
+            "Proficiency Bonus": "+5",
+            "Features": "Otherworldly Patron feature",
+            "Cantrips Known": "4",
+            "Spells Known": "12",
+            "Spell Slots": "3",
+            "Slot Level": "5th",
+            "Invocations Known": "6"
+        },
+        "15": {
+            "Level": "15th",
+            "Proficiency Bonus": "+5",
+            "Features": "Mystic Arcanum (8th level)",
+            "Cantrips Known": "4",
+            "Spells Known": "13",
+            "Spell Slots": "3",
+            "Slot Level": "5th",
+            "Invocations Known": "7"
+        },
+        "16": {
+            "Level": "16th",
+            "Proficiency Bonus": "+5",
+            "Features": "Ability Score Improvement, Eldritch Versatility (Optional)",
+            "Cantrips Known": "4",
+            "Spells Known": "13",
+            "Spell Slots": "3",
+            "Slot Level": "5th",
+            "Invocations Known": "7"
+        },
+        "17": {
+            "Level": "17th",
+            "Proficiency Bonus": "+6",
+            "Features": "Mystic Arcanum (9th level)",
+            "Cantrips Known": "4",
+            "Spells Known": "14",
+            "Spell Slots": "4",
+            "Slot Level": "5th",
+            "Invocations Known": "7"
+        },
+        "18": {
+            "Level": "18th",
+            "Proficiency Bonus": "+6",
+            "Features": "",
+            "Cantrips Known": "4",
+            "Spells Known": "14",
+            "Spell Slots": "4",
+            "Slot Level": "5th",
+            "Invocations Known": "8"
+        },
+        "19": {
+            "Level": "19th",
+            "Proficiency Bonus": "+6",
+            "Features": "Ability Score Improvement, Eldritch Versatility (Optional)",
+            "Cantrips Known": "4",
+            "Spells Known": "15",
+            "Spell Slots": "4",
+            "Slot Level": "5th",
+            "Invocations Known": "8"
+        },
+        "20": {
+            "Level": "20th",
+            "Proficiency Bonus": "+6",
+            "Features": "Eldritch Master",
+            "Cantrips Known": "4",
+            "Spells Known": "15",
+            "Spell Slots": "4",
+            "Slot Level": "5th",
+            "Invocations Known": "8"
+        }
+    },
+    "hit points": {
+        "Hit Dice": "Hit Dice: 1d8 per warlock level",
+        "Base Hit Points": "\nHit Points at 1st Level: 8 + your Constitution modifier",
+        "Hit Points Per Level": "Hit Dice: 1d8 per warlock level\nHit Points at 1st Level: 8 + your Constitution modifier"
+    },
+    "proficiencies": {
+        "Armor Proficiency": "Light armor",
+        "Weapon Proficiency": "Simple weapons",
+        "Tool Proficiency": "None",
+        "Saving Thow Proficiency": "Wisdom, Charisma",
+        "Skill Proficiency": "Choose two from Arcana, Deception, History, Intimidation, Investigation, Nature, and Religion"
+    },
+    "equipment": {
+        "Equipment 1": "(a) a light crossbow and 20 bolts or (b) any simple weapon",
+        "Equipment 2": "(a) a component pouch or (b) an arcane focus",
+        "Equipment 3": "(a) a scholar's pack or (b) a dungeoneer's pack",
+        "Equipment 4": "Leather armor, any simple weapon, and two daggers"
+    },
+    "class features": {
+        "Otherworldly Patron": [
+            "At 1st level, you have struck a bargain with an otherworldly being of your choice. Your choice grants you features at 1st level and again at 6th, 10th, and 14th level.",
+            "PatronSourceArchfeyPlayer's HandbookCelestialXanathar's Guide to EverythingFathomlessTasha's Cauldron of EverythingFiendPlayer's HandbookGenieTasha's Cauldron of EverythingGreat Old OnePlayer's HandbookHexbladeXanathar's Guide to EverythingUndeadVan Richten's Guide to RavenloftUndyingSword Coast Adventurer's GuideUnearthed ArcanaMage of LoreholdUnearthed Arcana 79 - Mages of StrixhavenMage of SilverquillUnearthed Arcana 79 - Mages of StrixhavenMage of WitherbloomUnearthed Arcana 79 - Mages of StrixhavenThe following domains are unofficial content developed by WotC designersKrakenThinkDMArchived Unearthed ArcanaCelestialUnearthed Arcana 40 - Revised Class OptionsGenieUnearthed Arcana 72 - Subclasses RevisitedGhost in the MachineUnearthed Arcana 7 - Modern MagicHexbladeUnearthed Arcana 29 - Warlock and WizardLurker in the DeepUnearthed Arcana 61 - Sorcerer and WarlockNoble GenieUnearthed Arcana 67 - Subclasses, Part 1Raven QueenUnearthed Arcana 29 - Warlock and WizardSeekerUnearthed Arcana 16 - The FaithfulUndeadUnearthed Arcana 74 - Subclasses, Part 4Undying LightUnearthed Arcana 10 - Light, Dark, Underdark!"
+        ],
+        "Pact Magic": [
+            "Your arcane research and the magic bestowed on you by your patron have given you facility with spells."
+        ],
+        "Cantrips": [
+            "You know two cantrips of your choice from the warlock spell list. You learn additional warlock cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Warlock table."
+        ],
+        "Spell Slots": [
+            "The Warlock table shows how many spell slots you have to cast your warlock spells of 1st through 5th level. The table also shows what the level of those slots is; all of your spell slots are the same level. To cast one of your warlock spells of 1st level or higher, you must expend a spell slot. You regain all expended spell slots when you finish a short or long rest.",
+            "For example, when you are 5th level, you have two 3rd-level spell slots. To cast the 1st-level spell witch bolt, you must spend one of those slots, and you cast it as a 3rd-level spell."
+        ],
+        "Spells Known of 1st Level and Higher": [
+            "At 1st level, you know two 1st-level spells of your choice from the warlock spell list.",
+            "The Spells Known column of the Warlock table shows when you learn more warlock spells of your choice of 1st level or higher. A spell you choose must be of a level no higher than what's shown in the table's Slot Level column for your level. When you reach 6th level, for example, you learn a new warlock spell, which can be 1st, 2nd, or 3rd level.",
+            "Additionally, when you gain a level in this class, you can choose one of the warlock spells you know and replace it with another spell from the warlock spell list, which also must be of a level for which you have spell slots."
+        ],
+        "Spellcasting Ability": [
+            "Charisma is your spellcasting ability for your warlock spells, so you use your Charisma whenever a spell refers to your spellcasting ability. In addition, you use your Charisma modifier when setting the saving throw DC for a warlock spell you cast and when making an attack roll with one.",
+            "Spell save DC = 8 + your proficiency bonus + your Charisma modifier",
+            "Spell attack modifier = your proficiency bonus + your Charisma modifier"
+        ],
+        "Spellcasting Focus": [
+            "You can use an arcane focus as a spellcasting focus for your warlock spells."
+        ],
+        "Eldritch Invocations": [
+            "In your study of occult lore, you have unearthed Eldritch Invocations, fragments of forbidden knowledge that imbue you with an abiding magical ability.",
+            "At 2nd level, you gain two eldritch invocations of your choice. When you gain certain warlock levels, you gain additional invocations of your choice, as shown in the Invocations Known column of the Warlock table. A level prerequisite refers to your level in this class.",
+            "Additionally, when you gain a level in this class, you can choose one of the invocations you know and replace it with another invocation that you could learn at that level."
+        ],
+        "Pact Boon": [
+            "At 3rd level, your otherworldly patron bestows a gift upon you for your loyal service. You gain one of the following features of your choice.",
+            "Pact of the BladeYou can use your action to create a pact weapon in your empty hand. You can choose the form that this melee weapon takes each time you create it. You are proficient with it while you wield it. This weapon counts as magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage.Your pact weapon disappears if it is more than 5 feet away from you for 1 minute or more. It also disappears if you use this feature again, if you dismiss the weapon (no action required), or if you die.You can transform one magic weapon into your pact weapon by performing a special ritual while you hold the weapon. You perform the ritual over the course of 1 hour, which can be done during a short rest.You can then dismiss the weapon, shunting it into an extradimensional space, and it appears whenever you create your pact weapon thereafter. You can't affect an artifact or a sentient weapon in this way. The weapon ceases being your pact weapon if you die, if you perform the 1-hour ritual on a different weapon, or if you use a 1-hour ritual to break your bond to it. The weapon appears at your feet if it is in the extradimensional space when the bond breaks.",
+            "Pact of the ChainYou learn the find familiar spell and can cast it as a ritual. The spell doesn't count against your number of spells known.When you cast the spell, you can choose one of the normal forms for your familiar or one of the following special forms: imp, pseudodragon, quasit, or sprite.Additionally, when you take the Attack action, you can forgo one of your own attacks to allow your familiar to make one attack with its reaction.",
+            "Pact of the TomeYour patron gives you a grimoire called a Book of Shadows. When you gain this feature, choose three cantrips from any class's spell list (the three needn't be from the same list). While the book is on your person, you can cast those cantrips at will. They don't count against your number of cantrips known. If they don't appear on the warlock spell list, they are nonetheless warlock spells for you.If you lose your Book of Shadows, you can perform a 1-hour ceremony to receive a replacement from your patron. This ceremony can be performed during a short or long rest, and it destroys the previous book. The book turns to ash when you die.",
+            "Pact of the TalismanYour patron gives you an amulet, a talisman that can aid the wearer when the need is great. When the wearer fails an ability check, they can add a d4 to the roll, potentially turning the roll into a success. This benefit can be used a number of times equal to your proficiency bonus, and all expended uses are restored when you finish a long rest.If you lose the talisman, you can perform a 1-hour ceremony to receive a replacement from your patron. This ceremony can be performed during a short or long rest, and it destroys the previous amulet. The talisman turns to ash when you die.",
+            "Pact of the Star Chain (UA)Prerequisite: Seeker PatronThe Seeker grants you a chain forged from starlight, decorated with seven gleaming motes of brightness. While the chain is on your person, you know the augury spell and can cast it as a ritual. The spell doesn't count against your number of spells known.Additionally, you can invoke the Seeker's power to gain advantage on an Intelligence check while you carry this item. Once you use this ability, you cannot use it again until you complete a short or long rest.If you lose your Star Chain, you can perform a 1-hour ceremony to receive a replacement from the Seeker. The ceremony can be performed during a short or long rest, and it destroys the previous chain. The chain disappears in a flash of light when you die.The exact form of this item might be different depending on your patron. The Star Chain is inspired by the Greyhawk deity Celestian."
+        ],
+        "Ability Score Improvement": [
+            "When you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature."
+        ],
+        "Eldritch Versatility (Optional)": [
+            "Whenever you reach a level in this class that grants the Ability Score Improvement feature, you can do one of the following, representing a change of focus in your occult studies:",
+            "Replace one cantrip you learned from this class's Pact Magic feature with another cantrip from the warlock spell list.",
+            "Replace the option you chose for the Pact Boon feature with one of that feature's other options.",
+            "If you're 12th level or higher, replace one spell from your Mystic Arcanum feature with another warlock spell of the same level.",
+            "If this change makes you ineligible for any of your Eldritch Invocations, you must also replace them now, choosing invocations for which you qualify."
+        ],
+        "Mystic Arcanum": [
+            "At 11th level, your patron bestows upon you a magical secret called an arcanum. Choose one 6th-level spell from the warlock spell list as this arcanum.",
+            "You can cast your arcanum spell once without expending a spell slot. You must finish a long rest before you can do so again.",
+            "At higher levels, you gain more warlock spells of your choice that can be cast in this way: one 7th-level spell at 13th level, one 8th-level spell at 15th level, and one 9th-level spell at 17th level. You regain all uses of your Mystic Arcanum when you finish a long rest."
+        ],
+        "Eldritch Master": [
+            "At 20th level, you can draw on your inner reserve of mystical power while entreating your patron to regain expended spell slots. You can spend 1 minute entreating your patron for aid to regain all your expended spell slots from your Pact Magic feature. Once you regain spell slots with this feature, you must finish a long rest before you can do so again."
+        ]
+    }
+}

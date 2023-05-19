@@ -19,7 +19,7 @@ async function getClassData(classUrl) {
         classJson["equipment"] = getClassEquipment($)
         classJson["class features"] = getClassFeatures($)
 
-        console.log(classJson)
+        // console.log(classJson)
         return classJson
     }
     catch (error) {
@@ -216,22 +216,24 @@ function getNextInstanceOfCharacter(string, startIndex, char) {
 }
 
 /* Writes given class Json object to a Json file */
-function writeClassJson(jsonObject) {
-    //Create new file
-
-    //Write to file
+function writeClassJson(jsonObject, fileName) {
+    jsonData = JSON.stringify(jsonObject)
+    file = fileName + ".json"
+    // console.log(jsonObject)
+    // console.log(jsonData)
+    fs.writeFileSync(file, jsonData)
 }
 
-function writeAllClasses() {
+async function writeAllClasses() {
     urlBase = "http://dnd5e.wikidot.com/"
     classList = ["wizard", "rogue", "artificer", "barbarian",
         "bard", "cleric", "druid", "fighter", "monk", "paladin",
         "ranger", "sorcerer", "warlock"]
 
     for (let i = 0; i < classList.length; i++) {
-        writeClassJson(getClassData(urlBase + classList[i]))
+        url = urlBase + classList[i]
+        writeClassJson(await getClassData(url), classList[i])
     }
 }
 
-
-getClassData("http://dnd5e.wikidot.com/wizard")
+writeAllClasses()
