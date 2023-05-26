@@ -4,6 +4,12 @@ const fs = require("fs")
 const { start } = require("repl")
 const { Console } = require("console")
 
+/* Calls all writer methods for JSON files */
+async function writeAllJsonFiles() {
+    writeAllClasses()
+    writeItemsJson()
+}
+
 /* Returns a JSON object containing all of the information on a class's wikidot page */
 async function getClassData(classUrl) {
     try {
@@ -219,8 +225,6 @@ function getNextInstanceOfCharacter(string, startIndex, char) {
 function writeClassJson(jsonObject, fileName) {
     jsonData = JSON.stringify(jsonObject)
     file = fileName + ".json"
-    // console.log(jsonObject)
-    // console.log(jsonData)
     fs.writeFileSync(file, jsonData)
 }
 
@@ -242,12 +246,15 @@ async function writeAllClasses() {
 /* ---------------MAGIC ITEM SCRAPING--------------- */
 
 /* Returns a JSON object containing all wonderous items */
-async function getItemData(url) {
+async function getItemData() {
     try {
+        url = "http://dnd5e.wikidot.com/wondrous-items"
         const response = await axios.get(url)
         const $ = cheerio.load(response.data)
 
-        scrapeItemPage($)
+        const result = await scrapeItemPage($)
+
+        return result
     }
     catch (error) {
         console.error(error)
@@ -264,10 +271,10 @@ async function scrapeItemPage($) {
     itemRarities = ["common", "uncommon", "rare", "very rare", "legendary", "artifact", "unique", "???"]
     allItems = {}
 
-    for (let i = 0; i < 8; i++) {                                           //CHANGE BACK TO 8 WHEN DONE TESTING
-        pageData = $(searchTerms[i]) // <div id="wiki-tab-0-0" ... /div>
+    /* Scraping links for individual item descriptions */
+    for (let i = 0; i < 8; i++) {
+        pageData = await $(searchTerms[i]) // <div id="wiki-tab-0-0" ... /div>
         pageText = pageData.text()
-        // console.log(pageText)
 
         /* Getting the column names from table */
         columns = []
@@ -276,11 +283,13 @@ async function scrapeItemPage($) {
         startIndex = startIndex + columnText.length + 3
         columns = columnText.split("\n")
 
+        descriptionDataList = await $(searchTerms[i]).children().find("a") // First listed URL for item descriptions, will use to iterate other descriptions w/ indexes
+
         currentItemGroup = {}
         index = 0
         while (true) { // Getting each item
             currentItemText = pageText.substring(startIndex, getNextDoubleNewLineCharIndex(pageText, startIndex))
-            // console.log(currentItemText)
+
             startIndex = startIndex + currentItemText.length + 3
             currentItem = {}
             currentItemArray = currentItemText.split("\n")
@@ -290,42 +299,44 @@ async function scrapeItemPage($) {
             for (let k = 0; k < columns.length; k++) {
                 currentItem[columns[k]] = currentItemArray[k]
             }
-            currentItem["description"] = await getItemDescription(currentItem[columns[0]])
+            
+            /* Getting the description */
+            currentItem["description"] = await getItemDescription(descriptionDataList[index]["attribs"]["href"])
+            
             currentItemGroup[index++] = currentItem
         }
 
         allItems[itemRarities[i]] = currentItemGroup
     }
-    // console.log(allItems)
+    return allItems
 }
 
-/* Takes the name of an item and accesses the page associated
-   with it to get the item's description. */
-async function getItemDescription(itemName) {
-    urlBase = "http://dnd5e.wikidot.com/wondrous-items:"
-
-    pieces = itemName.split(" ") //Removing spaces and replacing with "-"
-    result = pieces.join("-")                                                   //NEED TO REDO THIS METHOD, NEED TO ACCESS THE HREF WITH 
-                                                                                //ITEM LINK BECAUSE OF INCONSISTENT FORMATTING
-
-    pieces2 = result.split("'") //Removing ' and replacing with nothing
-    result2 = pieces2.join("")
-
-    result3 = result2.substring(0, getNextInstanceOfCharacter(result2, 0, ",")) //removing everything after any found commas
-    
-    // console.log("REVISED NAME: " + result2)
-
-    url = urlBase + result3
-
-    const response = await axios.get(url)
+/* Takes the link to an item's page and returns the description. */
+async function getItemDescription(itemUrl) {
+    /* Need to scrape invividual links from the page and supply them to this method to grab descriptions */
+    baseUrl = "http://dnd5e.wikidot.com/"
+    const response = await axios.get(baseUrl + itemUrl)
     const $ = cheerio.load(response.data)
 
     data = $("#page-content").children()
     text = data.text()
 
-    // console.log(text)
-
     return text
 }
 
-getItemData("http://dnd5e.wikidot.com/wondrous-items")
+/* Writes a json file of magic items */
+async function writeItemsJson() {
+    filename = "wonderousItems.json"
+    const itemsJson = await getItemData()
+    jsonData = JSON.stringify(itemsJson)
+    fs.writeFileSync(filename, jsonData)
+}
+
+async function logResult() {
+    const result = await getItemData()
+    console.log(result)
+}
+
+logResult()
+
+// writeAllJsonFiles()
