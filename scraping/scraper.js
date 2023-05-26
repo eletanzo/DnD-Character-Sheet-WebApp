@@ -47,7 +47,8 @@ function getClassDescription($) {
     return classDescriptionInfo.first().text()
 }
 
-/* Returns everything below the eqipment tab on the class page */
+/* Returns everything below the eqipment tab on the class page
+NOTE: H3 is feature, H5 is subheading within a feature */
 function getClassFeatures($) {
     searchTerms = []
     classFeatures = {}
@@ -272,7 +273,7 @@ async function scrapeItemPage($) {
     allItems = {}
 
     /* Scraping links for individual item descriptions */
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 1; i++) {
         pageData = await $(searchTerms[i]) // <div id="wiki-tab-0-0" ... /div>
         pageText = pageData.text()
 
@@ -299,10 +300,10 @@ async function scrapeItemPage($) {
             for (let k = 0; k < columns.length; k++) {
                 currentItem[columns[k]] = currentItemArray[k]
             }
-            
+
             /* Getting the description */
             currentItem["description"] = await getItemDescription(descriptionDataList[index]["attribs"]["href"])
-            
+
             currentItemGroup[index++] = currentItem
         }
 
@@ -318,10 +319,51 @@ async function getItemDescription(itemUrl) {
     const response = await axios.get(baseUrl + itemUrl)
     const $ = cheerio.load(response.data)
 
-    data = $("#page-content").children()
-    text = data.text()
+    itemDescriptionJson = {}
 
-    return text
+    data = $("#page-content").children()
+    counter = 0
+    while (true) {
+        /* Get a line and add it to obj, if table/bulleted list process accordingly, else just insert text*/
+        nodename = data[counter].name //p = normal text, table = table, ul = container of bulleted list, li = element of bulleted list
+
+        if (nodename == "p") { //Plain text
+            itemDescriptionJson[counter] = data[counter]
+        }
+        else if (nodename == "table") { //Table
+            // tableData = data[counter].children()
+            // // console.log("Found table: ")
+            // tableObj = {}
+            // tableHeaders = []
+
+            // // while(true) { // Getting headers (Checking for <th> tags)
+
+            // // }
+
+            // while (true) { //Getting rows
+            //     if (!tableData) break
+            //     tableRow = tableData.text()
+
+
+            //     tableData = tableData.next()
+            // }
+        }
+        else if (nodename == "ul") { //Start of bulleted list
+
+        }
+        else if (nodename == "li") { //Element of bulleted list
+
+        }
+
+        // data = data.next()
+        console.log(nodename)
+        counter++
+        if (data[counter] == undefined) break
+    }
+
+    console.log(itemDescriptionJson)
+
+    return data
 }
 
 /* Writes a json file of magic items */
@@ -337,6 +379,8 @@ async function logResult() {
     console.log(result)
 }
 
-logResult()
+getItemDescription("wondrous-items:crook-of-rao")
+
+// logResult()
 
 // writeAllJsonFiles()
