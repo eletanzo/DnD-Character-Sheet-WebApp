@@ -319,16 +319,17 @@ async function getItemDescription(itemUrl) {
     const response = await axios.get(baseUrl + itemUrl)
     const $ = cheerio.load(response.data)
 
-    itemDescriptionJson = {}
+    itemDescriptionJson = []
 
-    data = $("#page-content").children()
+    data = $("#page-content").contents()
     counter = 0
-    while (true) {
+    while (true) { 
         /* Get a line and add it to obj, if table/bulleted list process accordingly, else just insert text*/
         nodename = data[counter].name //p = normal text, table = table, ul = container of bulleted list, li = element of bulleted list
 
         if (nodename == "p") { //Plain text
-            itemDescriptionJson[counter] = data[counter]
+            itemDescriptionJson.push(data[String(counter)])
+            console.log(data[counter])
         }
         else if (nodename == "table") { //Table
             // tableData = data[counter].children()
@@ -354,14 +355,13 @@ async function getItemDescription(itemUrl) {
         else if (nodename == "li") { //Element of bulleted list
 
         }
-
         // data = data.next()
-        console.log(nodename)
+        // console.log(nodename)
         counter++
         if (data[counter] == undefined) break
+        if (counter > 5) break
     }
-
-    console.log(itemDescriptionJson)
+    // console.log(data)
 
     return data
 }
